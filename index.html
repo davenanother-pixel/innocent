@@ -4,156 +4,305 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Innocent Clothing</title>
+<link rel="icon" href="favicon-I.ico">
 
-<!-- Favicons -->
-<link rel="icon" href="favicon-I.ico" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+<style>
+/* =========================
+   ROOT + RESET
+========================= */
+:root {
+  --primary:#000000;
+  --secondary:#ffffff;
+  --bg:#f5f5f5;
+  --radius:20px;
+  --motion:1;
+  --density:1;
+}
 
-<!-- CSS -->
-<link rel="stylesheet" href="style.css">
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Inter,sans-serif;
+  background:var(--bg);
+  color:#111;
+  transition:background .3s,color .3s;
+}
+
+/* =========================
+   DEVICE MODES
+========================= */
+body.mobile header{padding:16px}
+body.mobile .desktop-only{display:none}
+body.desktop .mobile-only{display:none}
+
+/* =========================
+   HEADER
+========================= */
+header{
+  position:sticky;top:0;z-index:1000;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:20px 48px;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid #ddd;
+}
+
+header h1{
+  font-family:Cinzel,serif;
+  letter-spacing:2px;
+}
+
+header .icons span{
+  margin-left:18px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+/* =========================
+   HERO
+========================= */
+.hero{
+  height:90vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.hero h2{
+  font-size:clamp(36px,6vw,60px);
+  font-family:Cinzel,serif;
+}
+
+.hero p{margin:14px 0;color:#555}
+
+/* =========================
+   SHOP
+========================= */
+section{padding:90px 40px}
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:40px;
+}
+
+.product{
+  background:var(--secondary);
+  border-radius:var(--radius);
+  padding:24px;
+  box-shadow:0 20px 50px rgba(0,0,0,.1);
+  transition:transform calc(.3s * var(--motion));
+}
+.product:hover{transform:translateY(-8px)}
+
+.product img{
+  width:100%;
+  border-radius:14px;
+  cursor:zoom-in;
+}
+
+.controls{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:10px;
+}
+
+.controls button{
+  padding:6px 16px;
+  border-radius:999px;
+  border:1px solid #ccc;
+  background:white;
+}
+
+/* =========================
+   CART DRAWER
+========================= */
+.cart{
+  position:fixed;
+  right:-380px;
+  top:0;
+  width:360px;
+  height:100%;
+  background:white;
+  z-index:3000;
+  padding:24px;
+  transition:.4s;
+  box-shadow:-12px 0 40px rgba(0,0,0,.2);
+}
+.cart.open{right:0}
+
+/* =========================
+   SETTINGS PANEL
+========================= */
+.settings{
+  position:fixed;
+  left:-340px;
+  top:0;
+  width:320px;
+  height:100%;
+  background:white;
+  z-index:3000;
+  padding:24px;
+  transition:.4s;
+  box-shadow:12px 0 40px rgba(0,0,0,.2);
+}
+.settings.open{left:0}
+
+.settings label{display:block;margin-top:14px}
+
+/* =========================
+   FULLSCREEN PREVIEW
+========================= */
+.preview{
+  position:fixed;
+  inset:0;
+  display:none;
+  background:rgba(0,0,0,.9);
+  align-items:center;
+  justify-content:center;
+  z-index:5000;
+}
+.preview img{
+  max-width:90%;
+  max-height:90%;
+}
+.preview span{
+  position:absolute;
+  top:20px;
+  right:30px;
+  font-size:36px;
+  color:white;
+  cursor:pointer;
+}
+
+/* =========================
+   MOBILE FULLSCREEN TWEAKS
+========================= */
+body.mobile .hero{height:100vh}
+body.mobile section{padding:60px 20px}
+body.mobile .product{padding:18px}
+</style>
 </head>
-<body class="light animations-on">
 
-<!-- COOKIES BANNER -->
-<div class="cookies-banner" id="cookies-banner">
-  <div class="cookies-content">
-    We use cookies to enhance your shopping experience.
-    <button id="accept-cookies">Accept</button>
-  </div>
-</div>
+<body>
 
-<!-- HEADER -->
 <header>
-  <div class="header-left">
-    <h1>Innocent Clothing</h1>
-  </div>
-  <nav class="nav-links">
-    <a href="#home" class="nav-link">Home</a>
-    <a href="#products" class="nav-link">Products</a>
-    <a href="#about" class="nav-link">About</a>
-    <a href="#contact" class="nav-link">Contact</a>
-  </nav>
-  <div class="header-buttons">
-    <div class="settings-icon" id="settings-icon" title="Settings">
-      <img src="settings-favicon.png" alt="Settings">
-    </div>
-    <div class="cart-icon" id="cart-icon">
-      <img src="cart-favicon.png" alt="Cart">
-      <span id="cart-count">0</span>
-    </div>
+  <h1>Innocent</h1>
+  <div class="icons">
+    <span onclick="toggleSettings()">Settings</span>
+    <span onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</span>
   </div>
 </header>
 
-<!-- SETTINGS PANEL -->
-<div class="settings-panel" id="settings-panel">
-  <h3>Settings</h3>
-  <div class="setting-option">
-    <label>Theme:</label>
-    <select id="theme-select">
-      <option value="light">Light</option>
-      <option value="dark">Dark</option>
-    </select>
+<div class="hero">
+  <div>
+    <h2>Innocent Clothing</h2>
+    <p>Original design. Minimal future.</p>
   </div>
-  <div class="setting-option">
-    <label>Primary Color:</label>
-    <input type="color" id="primary-color" value="#000000">
-  </div>
-  <div class="setting-option">
-    <label>Secondary Color:</label>
-    <input type="color" id="secondary-color" value="#ffffff">
-  </div>
-  <div class="setting-option">
-    <label>Animations:</label>
-    <select id="animations-toggle">
-      <option value="on">On</option>
-      <option value="off">Off</option>
-    </select>
-  </div>
-  <button id="close-settings">Close</button>
 </div>
 
-<!-- CART DROPDOWN -->
-<div class="cart-dropdown" id="cart-dropdown">
+<section>
+  <div class="products">
+    <div class="product">
+      <img id="main-img" src="shirt-front.png" onclick="openPreview()">
+      <div class="controls">
+        <button onclick="switchImg('front')">Front</button>
+        <button onclick="switchImg('back')">Back</button>
+      </div>
+
+      <h3>Innocent Original Design</h3>
+      <p>$24.97</p>
+
+      <select id="size">
+        <option>XS</option><option>S</option><option>M</option>
+        <option>L</option><option>XL</option>
+      </select>
+
+      <input type="number" id="qty" min="1" value="1">
+      <button onclick="addToCart()">Add to Cart</button>
+    </div>
+  </div>
+</section>
+
+<div class="cart" id="cart">
   <h3>Cart</h3>
   <ul id="cart-items"></ul>
-  <p>Total: $<span id="cart-total">0</span></p>
-  <div class="checkout-form">
-    <input type="text" id="customer-name" placeholder="Full Name" required>
-    <input type="email" id="customer-email" placeholder="Email" required>
-    <input type="text" id="customer-address" placeholder="Address" required>
-    <input type="text" id="customer-card" placeholder="Credit Card Number" required>
-    <input type="text" id="customer-exp" placeholder="Expiry MM/YY" required>
-    <input type="text" id="customer-cvc" placeholder="CVC" required>
-    <a href="#" id="checkout-link" target="_blank">Place Order</a>
-  </div>
+  <p>Total: $<span id="total">0.00</span></p>
+
+  <input id="name" placeholder="Name">
+  <input id="email" placeholder="Email">
+  <input id="address" placeholder="Address">
+
+  <a id="checkout" href="#">Request Order</a>
 </div>
 
-<!-- MAIN CONTENT -->
-<main id="main-content">
+<div class="settings" id="settings">
+  <h3>UI Settings</h3>
 
-  <!-- HOME -->
-  <section id="home" class="page">
-    <div class="hero animate">
-      <h2>Welcome to Innocent Clothing</h2>
-      <p>Minimalist. Premium. Future-ready.</p>
-      <a href="#products" class="btn-primary">Shop Now</a>
-    </div>
-  </section>
+  <label>Primary Color
+    <input type="color" onchange="setColor(this.value)">
+  </label>
 
-  <!-- PRODUCTS -->
-  <section id="products" class="page">
-    <div class="products-container">
-      <div class="product-card animate">
-        <img src="Innocent (9).png" alt="Innocent Graffiti Design">
-        <h3>Innocent Graffiti Design</h3>
-        <p>$24.97</p>
-        <label for="size-select-1">Select Size:</label>
-        <select id="size-select-1">
-          <optgroup label="Kids">
-            <option value="KXS">KXS</option>
-            <option value="KS">KS</option>
-            <option value="KM">KM</option>
-            <option value="KL">KL</option>
-          </optgroup>
-          <optgroup label="Adults">
-            <option value="XS">XS</option>
-            <option value="S">S</option>
-            <option value="M">M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-            <option value="AXL">AXL</option>
-          </optgroup>
-        </select>
-        <button onclick="addToCart('Innocent Graffiti Design', 24.97, 'size-select-1')">Add to Cart</button>
-      </div>
-    </div>
-  </section>
+  <label>Motion
+    <input type="range" min="0" max="1" step="1" onchange="setMotion(this.value)">
+  </label>
 
-  <!-- ABOUT -->
-  <section id="about" class="page">
-    <div class="about-content animate">
-      <h2>About Innocent Clothing</h2>
-      <p>We design modern, premium-quality apparel for the future. Every product is crafted for style, comfort, and timeless minimalism.</p>
-    </div>
-  </section>
+  <label>Density
+    <input type="range" min="0.8" max="1.2" step="0.1" onchange="setDensity(this.value)">
+  </label>
+</div>
 
-  <!-- CONTACT -->
-  <section id="contact" class="page">
-    <div class="contact-content animate">
-      <h2>Contact Us</h2>
-      <p>Questions? Reach out at <a href="mailto:davenanother@gmail.com">davenanother@gmail.com</a></p>
-    </div>
-  </section>
+<div class="preview" id="preview">
+  <span onclick="closePreview()">×</span>
+  <img id="preview-img">
+</div>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>&copy; 2026 Innocent Clothing. All rights reserved.</p>
-  </footer>
+<script>
+/* DEVICE DETECTION */
+document.body.classList.add(
+  (window.matchMedia("(max-width: 768px)").matches || navigator.maxTouchPoints)
+  ? "mobile" : "desktop"
+);
 
-</main>
+/* PRODUCT VIEW */
+let view="front";
+function switchImg(v){
+  view=v;
+  document.getElementById("main-img").src=`shirt-${v}.png`;
+}
+function openPreview(){
+  document.getElementById("preview-img").src=`shirt-${view}.png`;
+  document.getElementById("preview").style.display="flex";
+}
+function closePreview(){document.getElementById("preview").style.display="none"}
 
-<script src="script.js"></script>
+/* CART */
+let cart=[];
+function addToCart(){
+  cart.push({name:"Innocent Shirt",price:24.97,qty:+qty.value});
+  renderCart();
+}
+function renderCart(){
+  let t=0,c=0;
+  cart-items.innerHTML="";
+  cart.forEach(i=>{
+    t+=i.price*i.qty;c+=i.qty;
+    cart-items.innerHTML+=`<li>${i.name} × ${i.qty}</li>`;
+  });
+  total.textContent=t.toFixed(2);
+  cart-count.textContent=c;
+  checkout.href=`mailto:davenanother@gmail.com?subject=Order&body=Total $${t}`;
+}
+function toggleCart(){cart.classList.toggle("open")}
+function toggleSettings(){settings.classList.toggle("open")}
+
+/* SETTINGS */
+function setColor(v){document.documentElement.style.setProperty("--primary",v)}
+function setMotion(v){document.documentElement.style.setProperty("--motion",v)}
+function setDensity(v){document.documentElement.style.setProperty("--density",v)}
+</script>
+
 </body>
 </html>
