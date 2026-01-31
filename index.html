@@ -4,13 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Innocent Clothing</title>
-<link rel="icon" href="favicon.ico" type="image/x-icon">
+<!-- Browser tab favicon: royal 'I' -->
+<link rel="icon" href="favicon-I.ico" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body class="light animations-on">
 
-<!-- Top Full-Width Cookies Banner -->
+<!-- ======================
+     COOKIES BANNER
+====================== -->
 <div class="cookies-banner" id="cookies-banner">
   <div class="cookies-content">
     We use cookies to enhance your shopping experience.
@@ -18,7 +21,9 @@
   </div>
 </div>
 
-<!-- Header -->
+<!-- ======================
+     HEADER
+====================== -->
 <header>
   <div class="header-left">
     <h1>Innocent Clothing</h1>
@@ -31,16 +36,18 @@
   </nav>
   <div class="header-buttons">
     <div class="settings-icon" id="settings-icon" title="Settings">
-      <img src="settings-icon.svg" alt="Settings">
+      <img src="settings-favicon.png" alt="Settings">
     </div>
     <div class="cart-icon" id="cart-icon">
-      <img src="cart-icon.svg" alt="Cart">
+      <img src="cart-favicon.png" alt="Cart">
       <span id="cart-count">0</span>
     </div>
   </div>
 </header>
 
-<!-- Settings Panel -->
+<!-- ======================
+     SETTINGS PANEL
+====================== -->
 <div class="settings-panel" id="settings-panel">
   <h3>Settings</h3>
   <div class="setting-option">
@@ -68,7 +75,9 @@
   <button id="close-settings">Close</button>
 </div>
 
-<!-- Cart Dropdown -->
+<!-- ======================
+     CART DROPDOWN
+====================== -->
 <div class="cart-dropdown" id="cart-dropdown">
   <h3>Cart</h3>
   <ul id="cart-items"></ul>
@@ -84,9 +93,12 @@
   </div>
 </div>
 
-<!-- Main Pages -->
+<!-- ======================
+     MAIN CONTENT
+====================== -->
 <main id="main-content">
-  <!-- Home Page -->
+
+  <!-- HOME -->
   <section id="home" class="page">
     <div class="hero animate">
       <h2>Welcome to Innocent Clothing</h2>
@@ -95,54 +107,44 @@
     </div>
   </section>
 
-  <!-- Products Page -->
+  <!-- PRODUCTS -->
   <section id="products" class="page">
     <div class="products-container">
-      <!-- Product 1 -->
       <div class="product-card animate">
-        <img src="Innocent (9).png" alt="Innocent Original Design">
-        <h3>Innocent Original Design</h3>
+        <img src="Innocent (9).png" alt="Innocent Graffiti Design">
+        <h3>Innocent Graffiti Design</h3>
         <p>$24.97</p>
-        <label for="size-select-1">Size:</label>
+        <label for="size-select-1">Select Size:</label>
         <select id="size-select-1">
-          <option value="XS">XS</option>
-          <option value="S">S</option>
-          <option value="M">M</option>
-          <option value="L">L</option>
-          <option value="XL">XL</option>
+          <optgroup label="Kids">
+            <option value="KXS">KXS</option>
+            <option value="KS">KS</option>
+            <option value="KM">KM</option>
+            <option value="KL">KL</option>
+          </optgroup>
+          <optgroup label="Adults">
+            <option value="XS">XS</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="AXL">AXL</option>
+          </optgroup>
         </select>
-        <button onclick="addToCart('Innocent Original Design', 24.97, 'size-select-1')">Add to Cart</button>
+        <button onclick="addToCart('Innocent Graffiti Design', 24.97, 'size-select-1')">Add to Cart</button>
       </div>
-
-      <!-- Product 2 Placeholder (for expansion) -->
-      <div class="product-card animate">
-        <img src="placeholder.png" alt="Placeholder Product">
-        <h3>Product Name</h3>
-        <p>$19.99</p>
-        <label for="size-select-2">Size:</label>
-        <select id="size-select-2">
-          <option value="XS">XS</option>
-          <option value="S">S</option>
-          <option value="M">M</option>
-          <option value="L">L</option>
-          <option value="XL">XL</option>
-        </select>
-        <button onclick="addToCart('Product Name', 19.99, 'size-select-2')">Add to Cart</button>
-      </div>
-
-      <!-- More product cards can be duplicated here -->
     </div>
   </section>
 
-  <!-- About Page -->
+  <!-- ABOUT -->
   <section id="about" class="page">
     <div class="about-content animate">
       <h2>About Innocent Clothing</h2>
-      <p>We design modern, premium-quality apparel for the future. Every product is carefully crafted for style, comfort, and timeless minimalism.</p>
+      <p>We design modern, premium-quality apparel for the future. Every product is crafted for style, comfort, and timeless minimalism.</p>
     </div>
   </section>
 
-  <!-- Contact Page -->
+  <!-- CONTACT -->
   <section id="contact" class="page">
     <div class="contact-content animate">
       <h2>Contact Us</h2>
@@ -150,14 +152,13 @@
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer>
     <p>&copy; 2026 Innocent Clothing. All rights reserved.</p>
   </footer>
+
 </main>
 
 <script src="script.js"></script>
 </body>
 </html>
-
-
