@@ -9,42 +9,75 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Cookies Banner -->
+  <div class="cookies-banner" id="cookies-banner">
+    This site uses cookies to improve your experience. 
+    <button id="accept-cookies">Accept</button>
+  </div>
+
   <!-- Header -->
   <header>
     <h1>Innocent Clothing</h1>
-    <div class="cart-container">
+    <div class="header-buttons">
+      <div class="settings-icon" id="settings-icon" title="Settings">⚙️</div>
       <div class="cart-icon" id="cart-icon">
         <img src="cart-icon.svg" alt="Cart">
         <span id="cart-count">0</span>
       </div>
-      <div class="cart-dropdown" id="cart-dropdown">
-        <h3>Cart</h3>
-        <ul id="cart-items">
-          <!-- Items will appear here -->
-        </ul>
-        <p>Total: $<span id="cart-total">0</span></p>
-      </div>
     </div>
   </header>
 
+  <!-- Settings Panel -->
+  <div class="settings-panel" id="settings-panel">
+    <h3>Settings</h3>
+    <div class="setting-option">
+      <label>Theme:</label>
+      <select id="theme-select">
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+    </div>
+    <div class="setting-option">
+      <label>Primary Color:</label>
+      <input type="color" id="primary-color" value="#111111">
+    </div>
+    <div class="setting-option">
+      <label>Secondary Color:</label>
+      <input type="color" id="secondary-color" value="gold">
+    </div>
+    <button id="close-settings">Close</button>
+  </div>
+
+  <!-- Cart Dropdown -->
+  <div class="cart-dropdown" id="cart-dropdown">
+    <h3>Cart</h3>
+    <ul id="cart-items"></ul>
+    <p>Total: $<span id="cart-total">0</span></p>
+
+    <!-- Checkout Form -->
+    <div class="checkout-form">
+      <input type="text" id="customer-name" placeholder="Full Name" required>
+      <input type="email" id="customer-email" placeholder="Email" required>
+      <input type="text" id="customer-address" placeholder="Address" required>
+      <input type="text" id="customer-card" placeholder="Credit Card Number" required>
+      <input type="text" id="customer-exp" placeholder="Expiry MM/YY" required>
+      <input type="text" id="customer-cvc" placeholder="CVC" required>
+      <a href="#" id="checkout-link" target="_blank">Place Order</a>
+    </div>
+  </div>
+
   <!-- Products Section -->
   <main>
-    <div class="products" id="products-container">
-      <!-- Add product blocks here later -->
+    <div class="products">
+      <div class="product animate">
+        <img src="Innocent (9).png" alt="Innocent Original Design">
+        <h2>Innocent Original Design</h2>
+        <p>$28.00</p>
+        <button onclick="addToCart('Innocent Original Design', 28)">Add to Cart</button>
+      </div>
     </div>
   </main>
 
-  <!-- Checkout Form -->
-  <section class="checkout">
-    <h2>Checkout</h2>
-    <form id="checkout-form">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <button type="submit">Place Order</button>
-    </form>
-  </section>
-
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
