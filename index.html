@@ -172,11 +172,22 @@ const previewImg=document.getElementById("previewImg");
 
 function setSide(side){
   currentSide=side;
-  productImage.src=`example-${side}.png`;
+  // Force reload even if same side
+  productImage.src='';
+  setTimeout(()=>{
+    if(currentSide==='front'){
+      productImage.src='Innocent (9).png';
+      if(preview.style.display==='flex') previewImg.src='Innocent (9).png';
+    }else{
+      productImage.src='Innocent (9)-back.png';
+      if(preview.style.display==='flex') previewImg.src='Innocent (9)-back.png';
+    }
+  },10);
 }
+
 function openPreview(){
   preview.style.display="flex";
-  previewImg.src=`example-${currentSide}.png`;
+  previewImg.src=(currentSide==='front')?'Innocent (9).png':'Innocent (9)-back.png';
 }
 function closePreview(){preview.style.display="none"}
 
@@ -204,7 +215,7 @@ function renderCart(){
     total+=i.price*i.qty;
     count+=i.qty;
     const li=document.createElement("li");
-    li.textContent=`Innocent Original — ${i.size} × ${i.qty}`;
+    li.textContent=`Innocent Graffiti Design — ${i.size} × ${i.qty}`;
     cartItems.appendChild(li);
   });
   cartTotal.textContent=total.toFixed(2);
