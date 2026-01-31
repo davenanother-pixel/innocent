@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
-/* Simple fixes for settings/cart icons */
+/* Smooth hover for cart/settings icons */
 .header-buttons img {
   cursor: pointer;
   transition: transform 0.2s ease;
@@ -17,12 +17,30 @@
 .header-buttons img:hover {
   transform: scale(1.2);
 }
-/* Settings panel smooth slide */
+/* Settings panel sliding */
 .settings-panel {
+  position: fixed;
+  top: 50px;
+  right: -320px; /* hidden by default */
+  width: 300px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  padding: 15px;
   transition: right 0.3s ease;
+  z-index: 1000;
 }
 .cart-dropdown {
   display: none;
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  width: 300px;
+  max-height: 500px;
+  background: #fff;
+  overflow-y: auto;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  padding: 15px;
+  z-index: 999;
 }
 </style>
 </head>
@@ -56,7 +74,6 @@
     <div class="settings-icon" id="settings-icon" title="Settings">
       <img src="favicon-settings.ico" alt="Settings" width="24" height="24">
     </div>
-
     <!-- CART ICON -->
     <div class="cart-icon" id="cart-icon" title="Cart">
       <img src="favicon-cart.ico" alt="Cart" width="24" height="24">
@@ -263,3 +280,4 @@ document.getElementById('accept-cookies').addEventListener('click', () => {
 </script>
 </body>
 </html>
+
