@@ -4,32 +4,31 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Innocent Clothing</title>
-<link rel="icon" href="favicon.ico">
-
+<link rel="icon" href="favicon.ico" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
 <style>
 :root{
   --accent:#000;
   --bg:#f5f5f5;
   --card:#fff;
-  --radius:22px;
+  --radius:20px;
   --motion:1;
   --density:1;
 }
-*{box-sizing:border-box}
-body{margin:0;font-family:Inter,sans-serif;background:var(--bg);color:#111;transition:background .3s}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,sans-serif;background:var(--bg);color:#111;transition:background .3s, color .3s}
 h1,h2{font-family:Cinzel,serif}
-header{position:sticky;top:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:16px 32px;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid #ddd}
-header h1{margin:0;letter-spacing:2px}
+
+header{position:sticky;top:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:16px 32px;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:1px solid #ddd}
+header h1{letter-spacing:2px}
 header button{background:none;border:none;font-size:18px;cursor:pointer}
 
-main{padding:40px;max-width:1200px;margin:auto}
-section{padding:60px 0}
+main{max-width:1200px;margin:auto;padding:40px}
+section{padding:40px 0}
 
 /* PRODUCT */
-.product{background:var(--card);border-radius:var(--radius);padding:24px;box-shadow:0 20px 40px rgba(0,0,0,.1);margin-bottom:40px;transition:transform calc(.3s * var(--motion))}
-.product:hover{transform:translateY(-6px)}
+.product{background:var(--card);border-radius:var(--radius);padding:24px;box-shadow:0 15px 35px rgba(0,0,0,.1);margin-bottom:40px;transition:transform calc(.3s * var(--motion))}
+.product:hover{transform:translateY(-5px)}
 .viewer{position:relative}
 .viewer img{width:100%;border-radius:18px;cursor:pointer;transition:transform .3s}
 .viewer img:hover{transform:scale(calc(1+.03*var(--motion)))}
@@ -40,7 +39,7 @@ select,input{padding:10px;border-radius:10px;border:1px solid #ccc}
 button.primary{margin-top:20px;width:100%;padding:14px;border-radius:999px;border:none;background:var(--accent);color:#fff;font-size:16px;cursor:pointer}
 
 /* CART */
-.cart{position:fixed;right:-380px;top:0;height:100%;width:360px;background:#fff;box-shadow:-10px 0 40px rgba(0,0,0,.2);padding:24px;transition:.4s}
+.cart{position:fixed;right:-380px;top:0;height:100%;width:360px;background:#fff;box-shadow:-10px 0 40px rgba(0,0,0,.2);padding:24px;transition:.4s;z-index:5000}
 .cart.open{right:0}
 .cart h3{margin-top:0}
 .cart ul{list-style:none;padding:0;max-height:240px;overflow:auto}
@@ -53,7 +52,7 @@ button.primary{margin-top:20px;width:100%;padding:14px;border-radius:999px;borde
 /* SETTINGS */
 .settings{position:fixed;left:-320px;top:0;height:100%;width:300px;background:#fff;box-shadow:10px 0 40px rgba(0,0,0,.2);padding:20px;transition:.4s;z-index:4000}
 .settings.open{left:0}
-.settings label{font-size:14px}
+.settings label{font-size:14px;display:block;margin-bottom:10px}
 
 /* ABOUT / CONTACT */
 .about, .contact{background:var(--card);padding:24px;border-radius:var(--radius);box-shadow:0 18px 40px rgba(0,0,0,.1);margin-bottom:40px}
@@ -67,7 +66,6 @@ button.primary{margin-top:20px;width:100%;padding:14px;border-radius:999px;borde
 .mobile .viewer img{border-radius:0}
 </style>
 </head>
-
 <body>
 
 <header>
@@ -98,24 +96,24 @@ button.primary{margin-top:20px;width:100%;padding:14px;border-radius:999px;borde
     </div>
 
     <div class="options">
+      <input id="customerName" type="text" placeholder="Full Name (optional)">
       <select id="sizeSelect">
         <optgroup label="Kids">
-          <option value="KXS">Kids XS</option>
-          <option value="KS">Kids S</option>
-          <option value="KM">Kids M</option>
-          <option value="KL">Kids L</option>
-          <option value="KXL">Kids XL</option>
+          <option value="KXS">KXS</option>
+          <option value="KS">KS</option>
+          <option value="KM">KM</option>
+          <option value="KL">KL</option>
+          <option value="KXL">KXL</option>
         </optgroup>
         <optgroup label="Adults">
-          <option value="AXS">Adult XS</option>
-          <option value="AS">Adult S</option>
-          <option value="AM">Adult M</option>
-          <option value="AL">Adult L</option>
-          <option value="AXL">Adult XL</option>
-          <option value="AXXL">Adult XXL</option>
+          <option value="AXS">XS</option>
+          <option value="AS">S</option>
+          <option value="AM">M</option>
+          <option value="AL">L</option>
+          <option value="AXL">XL</option>
+          <option value="AXXL">AXL</option>
         </optgroup>
       </select>
-
       <input id="qtyInput" type="number" min="1" value="1">
     </div>
 
@@ -169,25 +167,22 @@ if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
 let currentSide="front";
 const productImage=document.getElementById("productImage");
 const previewImg=document.getElementById("previewImg");
+const preview=document.getElementById("preview");
 
 function setSide(side){
   currentSide=side;
-  // Force reload even if same side
-  productImage.src='';
-  setTimeout(()=>{
-    if(currentSide==='front'){
-      productImage.src='Innocent (9).png';
-      if(preview.style.display==='flex') previewImg.src='Innocent (9).png';
-    }else{
-      productImage.src='Innocent (9)-back.png';
-      if(preview.style.display==='flex') previewImg.src='Innocent (9)-back.png';
-    }
-  },10);
+  if(side==='front'){
+    productImage.src='Innocent (9).png';
+    if(preview.style.display==='flex') previewImg.src='Innocent (9).png';
+  }else{
+    productImage.src='placeholder.png';
+    if(preview.style.display==='flex') previewImg.src='placeholder.png';
+  }
 }
 
 function openPreview(){
   preview.style.display="flex";
-  previewImg.src=(currentSide==='front')?'Innocent (9).png':'Innocent (9)-back.png';
+  previewImg.src=(currentSide==='front')?'Innocent (9).png':'placeholder.png';
 }
 function closePreview(){preview.style.display="none"}
 
@@ -200,6 +195,7 @@ const cartTotal=document.getElementById("cartTotal");
 const sizeSelect=document.getElementById("sizeSelect");
 const qtyInput=document.getElementById("qtyInput");
 const checkoutLink=document.getElementById("checkoutLink");
+const customerNameInput=document.getElementById("customerName");
 
 function toggleCart(){cartEl.classList.toggle("open")}
 function addToCart(){
@@ -208,7 +204,9 @@ function addToCart(){
   cart.push({size,qty,price:24.97});
   renderCart();
 }
+
 function renderCart(){
+  const name=customerNameInput.value||"Customer";
   cartItems.innerHTML="";
   let total=0,count=0;
   cart.forEach(i=>{
@@ -220,8 +218,13 @@ function renderCart(){
   });
   cartTotal.textContent=total.toFixed(2);
   cartCount.textContent=count;
-  checkoutLink.href="mailto:davenanother@gmail.com?subject=Innocent Order&body="+
-    encodeURIComponent(cart.map(i=>`Size ${i.size} x${i.qty}`).join("\n")+`\n\nTotal: $${total.toFixed(2)}`);
+
+  checkoutLink.href="mailto:davenanother@gmail.com?subject="+encodeURIComponent("Innocent Order from "+name)+"&body="+
+    encodeURIComponent(
+      `Customer Name: ${name}\n\nOrder Items:\n`+
+      cart.map(i=>`Size ${i.size} x${i.qty}`).join("\n")+
+      `\n\nTotal: $${total.toFixed(2)}`
+    );
 }
 
 /* SETTINGS */
