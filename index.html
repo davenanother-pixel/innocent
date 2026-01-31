@@ -117,6 +117,39 @@ button.primary{margin-top:20px;width:100%;padding:14px;border-radius:999px;borde
       <input id="qtyInput" type="number" min="1" value="1">
     </div>
 
+    <!--Product 2-->
+      <section class="product">
+    <h2>Innocent Angel Design</h2>
+    <div class="viewer">
+      <img id="productImage" src="INNOCENT shirts.png" onclick="openPreview()">
+      <div class="viewer-controls">
+        <button onclick="setSide('front')">Front</button>
+        <button onclick="setSide('back')">Back</button>
+      </div>
+    </div>
+
+    <div class="options">
+      <input id="customerName" type="text" placeholder="Full Name (optional)">
+      <select id="sizeSelect">
+        <optgroup label="Kids">
+          <option value="KXS">KXS</option>
+          <option value="KS">KS</option>
+          <option value="KM">KM</option>
+          <option value="KL">KL</option>
+          <option value="KXL">KXL</option>
+        </optgroup>
+        <optgroup label="Adults">
+          <option value="AXS">XS</option>
+          <option value="AS">S</option>
+          <option value="AM">M</option>
+          <option value="AL">L</option>
+          <option value="AXL">XL</option>
+          <option value="AXXL">AXL</option>
+        </optgroup>
+      </select>
+      <input id="qtyInput" type="number" min="1" value="1">
+    </div>
+
     <button class="primary" onclick="addToCart()">Add to Cart</button>
   </section>
 
