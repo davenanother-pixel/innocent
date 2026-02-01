@@ -15,15 +15,8 @@
   --radius:15px;
   --shadow:0 6px 18px rgba(0,0,0,.1);
 }
-
-/* RESET */
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:Inter,sans-serif;
-  background:var(--bg);
-  color:#111;
-  overflow-x:hidden;
-}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Inter,sans-serif;background:var(--bg);color:#111;overflow-x:hidden;}
 
 /* HEADER */
 header{
@@ -39,7 +32,7 @@ header{
   box-shadow:0 2px 6px rgba(0,0,0,.05);
   border-radius:0 0 var(--radius) var(--radius);
 }
-h1{font-family:Cinzel,serif;font-size:20px;margin:0}
+h1{font-family:Cinzel,serif;font-size:20px;margin:0;}
 .cart-btn{
   background:var(--accent);
   color:#fff;
@@ -53,11 +46,12 @@ h1{font-family:Cinzel,serif;font-size:20px;margin:0}
 .cart-btn:hover{background:var(--accent-hover);}
 
 /* MAIN */
-main{max-width:1100px;margin:70px auto 24px;padding:0 14px}
+main{max-width:1100px;margin:70px auto 24px;padding:0 14px;}
 .products{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
   gap:16px;
+  justify-items:center;
 }
 
 /* PRODUCT CARD */
@@ -65,50 +59,52 @@ main{max-width:1100px;margin:70px auto 24px;padding:0 14px}
   background:var(--card);
   border-radius:var(--radius);
   box-shadow:var(--shadow);
-  padding:10px;
+  padding:10px 8px;
   display:flex;
   flex-direction:column;
   align-items:center;
   transition:transform .2s, box-shadow .2s;
+  max-width:180px;
 }
 .product:hover{
   transform:translateY(-3px);
   box-shadow:0 8px 24px rgba(0,0,0,.12);
 }
 .product img{
-  width:100px;
-  height:100px;
+  width:140px;
+  height:140px;
   object-fit:contain;
   margin-bottom:6px;
   cursor:pointer;
-  border-radius:10px;
+  border-radius:12px;
 }
 .price{
+  font-size:15px;
+  margin-bottom:2px;
   text-align:center;
-  font-weight:600;
-  font-size:14px;
-  margin-bottom:4px;
 }
 .taxed{
   font-size:11px;
-  color:#555;
   margin-bottom:6px;
+  text-align:center;
+  color:#555;
 }
 .options{
   display:flex;
   flex-direction:column;
-  gap:6px;
+  gap:4px;
   width:100%;
 }
 select,input{
-  padding:6px;
-  border-radius:8px;
-  border:1px solid #ccc;
+  padding:5px;
   font-size:13px;
+  border-radius:6px;
+  border:1px solid #ccc;
   width:100%;
 }
 button{
-  padding:7px;
+  padding:6px;
+  font-size:13px;
   border-radius:999px;
   border:none;
   background:var(--accent);
@@ -117,9 +113,7 @@ button{
   cursor:pointer;
   transition:background .2s;
 }
-button:hover{
-  background:var(--accent-hover);
-}
+button:hover{background:var(--accent-hover);}
 
 /* FULLSCREEN CART */
 .cart{
@@ -133,10 +127,7 @@ button:hover{
   opacity:0;
   transition:opacity .3s ease;
 }
-.cart.show{
-  display:flex;
-  opacity:1;
-}
+.cart.show{display:flex;opacity:1;}
 .cart-panel{
   width:90%;
   max-width:500px;
@@ -151,56 +142,18 @@ button:hover{
   transform:translateY(-30px);
   transition:transform .3s ease;
 }
-.cart.show .cart-panel{
-  transform:translateY(0);
-}
-.cart-panel h3{
-  text-align:center;
-  margin-bottom:16px;
-}
-.cart-panel input{
-  margin-bottom:12px;
-}
-.cart ul{
-  list-style:none;
-  margin:12px 0;
-  flex-grow:1;
-}
-.cart li{
-  font-size:14px;
-  padding:8px 0;
-  border-bottom:1px solid #eee;
-}
-.cart-total{
-  font-weight:600;
-  margin-top:12px;
-  font-size:16px;
-  text-align:right;
-}
-.cart-panel button{
-  margin-top:8px;
-}
-.secondary{
-  background:#fff;
-  color:#111;
-  border:1px solid #aaa;
-}
+.cart.show .cart-panel{transform:translateY(0);}
+.cart-panel h3{text-align:center;margin-bottom:16px;}
+.cart-panel input{margin-bottom:12px;}
+.cart ul{list-style:none;margin:12px 0;flex-grow:1;}
+.cart li{font-size:14px;padding:8px 0;border-bottom:1px solid #eee;}
+.cart-total{font-weight:600;margin-top:12px;font-size:16px;text-align:right;}
+.cart-panel button{margin-top:8px;}
+.secondary{background:#fff;color:#111;border:1px solid #aaa;}
 
 /* IMAGE MODAL */
-.modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.9);
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:3000;
-}
-.modal img{
-  max-width:90%;
-  max-height:90%;
-  border-radius:10px;
-}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;justify-content:center;align-items:center;z-index:3000;}
+.modal img{max-width:90%;max-height:90%;border-radius:12px;}
 
 /* COOKIE BANNER */
 .cookie-banner{
@@ -229,15 +182,13 @@ button:hover{
   border:none;
   cursor:pointer;
 }
-@keyframes slideUp{
-  from{transform:translate(-50%,100%);}
-  to{transform:translate(-50%,0);}
-}
+@keyframes slideUp{from{transform:translate(-50%,100%);}to{transform:translate(-50%,0);}}
 
 /* RESPONSIVE */
 @media(max-width:500px){
   .cart-panel{width:95%; height:85%;}
   main{margin-top:60px;}
+  .product img{width:120px;height:120px;}
 }
 </style>
 </head>
@@ -260,11 +211,14 @@ button:hover{
   <div class="taxed">Price includes taxes</div>
   <div class="options">
     <select>
-      <option>XS</option>
-      <option>S</option>
-      <option>M</option>
-      <option>L</option>
-      <option>XL</option>
+      <option>Kids XS</option>
+      <option>Kids S</option>
+      <option>Kids M</option>
+      <option>Kids L</option>
+      <option>Adults S</option>
+      <option>Adults M</option>
+      <option>Adults L</option>
+      <option>Adults XL</option>
     </select>
     <input type="number" value="1" min="1">
     <button onclick="addToCart(this)">Add to Cart</button>
