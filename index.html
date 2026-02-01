@@ -1,81 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Innocent Clothing</title>
 
+<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 :root{
   --accent:#000;
-  --bg:#f4f4f4;
+  --bg:#f6f6f6;
   --card:#fff;
-  --radius:20px;
+  --radius:18px;
+  --muted:#777;
 }
+
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Inter,sans-serif;background:var(--bg);color:#111}
-h1,h2,h3{font-family:Cinzel,serif}
 
-header{
-  position:sticky;top:0;z-index:1000;
-  background:#fff;border-bottom:1px solid #ddd;
-  padding:16px 32px;
-  display:flex;justify-content:space-between;align-items:center;
+body{
+  font-family:Inter,sans-serif;
+  background:var(--bg);
+  color:#111;
 }
 
-main{max-width:1200px;margin:auto;padding:40px 20px}
+h1,h2,h3{
+  font-family:Cinzel,serif;
+  letter-spacing:.04em;
+}
+
+/* ===== HEADER ===== */
+header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:#fff;
+  border-bottom:1px solid #e5e5e5;
+  padding:18px 40px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+header h1{
+  font-size:22px;
+}
+
+.cart-btn{
+  background:#000;
+  color:#fff;
+  border:none;
+  padding:10px 18px;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+/* ===== LAYOUT ===== */
+main{
+  max-width:1300px;
+  margin:auto;
+  padding:48px 24px;
+}
 
 .products{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:32px;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:40px;
 }
 
+/* ===== PRODUCT CARD ===== */
 .product{
   background:var(--card);
   border-radius:var(--radius);
-  padding:24px;
-  box-shadow:0 15px 35px rgba(0,0,0,.1);
+  padding:26px;
+  box-shadow:0 20px 40px rgba(0,0,0,.08);
+  transition:.3s ease;
+}
+
+.product:hover{
+  transform:translateY(-4px);
+  box-shadow:0 30px 60px rgba(0,0,0,.12);
 }
 
 .viewer img{
   width:100%;
-  border-radius:16px;
+  border-radius:14px;
   cursor:pointer;
 }
 
 .viewer-controls{
   display:flex;
   justify-content:center;
-  gap:10px;
-  margin-top:10px;
+  gap:12px;
+  margin-top:14px;
 }
 
 .viewer-controls button{
-  padding:6px 14px;
+  padding:6px 16px;
   border-radius:999px;
   border:1px solid #ccc;
   background:#fff;
   cursor:pointer;
+  font-size:13px;
 }
 
+/* ===== OPTIONS ===== */
 .options{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:12px;
-  margin-top:16px;
+  margin-top:18px;
 }
 
 select,input{
-  padding:10px;
+  padding:12px;
   border-radius:10px;
   border:1px solid #ccc;
+  font-size:14px;
 }
 
+/* ===== ADD TO CART ===== */
 button.primary{
-  margin-top:16px;
+  margin-top:18px;
   width:100%;
   padding:14px;
   border-radius:999px;
@@ -83,36 +131,64 @@ button.primary{
   background:var(--accent);
   color:#fff;
   cursor:pointer;
+  font-weight:600;
+  letter-spacing:.04em;
 }
 
+/* ===== CART ===== */
 .cart{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.6);
+  background:rgba(0,0,0,.55);
   display:none;
   justify-content:flex-end;
   z-index:2000;
 }
 
 .cart-panel{
-  width:360px;
+  width:380px;
   background:#fff;
   height:100%;
-  padding:24px;
+  padding:28px;
   overflow:auto;
 }
 
-.cart ul{list-style:none;margin:16px 0}
+.cart-panel h3{
+  margin-bottom:14px;
+}
 
+.cart-panel input{
+  width:100%;
+  margin-top:10px;
+}
+
+.cart ul{
+  list-style:none;
+  margin:18px 0;
+}
+
+.cart li{
+  padding:10px 0;
+  border-bottom:1px solid #eee;
+  font-size:14px;
+}
+
+/* ===== IMAGE MODAL ===== */
 .modal{
-  position:fixed;inset:0;
-  background:rgba(0,0,0,.85);
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
   display:none;
   justify-content:center;
   align-items:center;
   z-index:3000;
 }
-.modal img{max-width:90%;max-height:90%;border-radius:16px}
+
+.modal img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:18px;
+}
 </style>
 </head>
 
@@ -120,14 +196,15 @@ button.primary{
 
 <header>
   <h1>Innocent Clothing</h1>
-  <button onclick="openCart()">Cart (<span id="cartCount">0</span>)</button>
+  <button class="cart-btn" onclick="openCart()">
+    Cart <span id="cartCount">(0)</span>
+  </button>
 </header>
 
 <main>
-
 <section class="products">
 
-<!-- PRODUCT 1 -->
+<!-- PRODUCT -->
 <div class="product">
   <div class="viewer">
     <img src="INNOCENT shirt.png" onclick="openPreview(this)">
@@ -135,18 +212,19 @@ button.primary{
       <button onclick="setSide(this,'front')">Front</button>
     </div>
   </div>
+
   <div class="options">
     <select>
-      <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option>
+      <option>XS</option><option>S</option><option>M</option>
+      <option>L</option><option>XL</option>
     </select>
     <input type="number" value="1" min="1">
   </div>
-  <button class="primary" onclick="addToCart(this)">Add to Cart</button>
-</div>
 
-<!-- PRODUCTS 4–30 -->
-<!-- COPY ANY PRODUCT BLOCK ABOVE AND PASTE UNTIL YOU HAVE 30 -->
-<!-- All behavior will continue to work correctly -->
+  <button class="primary" onclick="addToCart(this)">
+    Add to Cart
+  </button>
+</div>
 
 </section>
 </main>
@@ -155,15 +233,18 @@ button.primary{
 <div class="cart" id="cart">
   <div class="cart-panel">
     <h3>Your Cart</h3>
+
     <input id="firstName" placeholder="First name">
-    <input id="lastName" placeholder="Last name (optional)" style="margin-top:10px">
+    <input id="lastName" placeholder="Last name (optional)">
+
     <ul id="cartItems"></ul>
+
     <button class="primary" onclick="checkout()">Checkout</button>
-    <button onclick="closeCart()" style="margin-top:10px">Close</button>
+    <button onclick="closeCart()" style="margin-top:12px">Close</button>
   </div>
 </div>
 
-<!-- PREVIEW -->
+<!-- IMAGE PREVIEW -->
 <div class="modal" id="preview" onclick="closePreview()">
   <img id="previewImg">
 </div>
@@ -173,41 +254,41 @@ let cart=[];
 
 function setSide(btn,side){
   const img=btn.closest(".product").querySelector("img");
-  img.src = side==="front" ? "example.png" : "placeholder.png";
+  img.src = side==="front" ? "INNOCENT shirt.png" : "placeholder.png";
 }
 
 function openPreview(img){
-  document.getElementById("previewImg").src=img.src;
-  document.getElementById("preview").style.display="flex";
+  previewImg.src=img.src;
+  preview.style.display="flex";
 }
-function closePreview(){document.getElementById("preview").style.display="none"}
+function closePreview(){preview.style.display="none"}
 
 function addToCart(btn){
   const product=btn.closest(".product");
   const size=product.querySelector("select").value;
   const qty=product.querySelector("input").value;
+
   cart.push({size,qty});
   renderCart();
 }
 
 function renderCart(){
-  const list=document.getElementById("cartItems");
-  list.innerHTML="";
+  cartItems.innerHTML="";
   cart.forEach((i,n)=>{
     const li=document.createElement("li");
-    li.textContent=`Item ${n+1} — Size ${i.size} x${i.qty}`;
-    list.appendChild(li);
+    li.textContent=`Item ${n+1} — Size ${i.size} × ${i.qty}`;
+    cartItems.appendChild(li);
   });
-  document.getElementById("cartCount").textContent=cart.length;
+  cartCount.textContent=`(${cart.length})`;
 }
 
-function openCart(){document.getElementById("cart").style.display="flex"}
-function closeCart(){document.getElementById("cart").style.display="none"}
+function openCart(){cartEl.style.display="flex"}
+function closeCart(){cartEl.style.display="none"}
 
 function checkout(){
-  const first=document.getElementById("firstName").value||"Customer";
-  const last=document.getElementById("lastName").value;
-  const name=last?`${first} ${last}`:first;
+  const name=
+    (firstName.value||"Customer")+
+    (lastName.value?" "+lastName.value:"");
 
   const body=
     `Customer: ${name}\n\n`+
@@ -216,8 +297,9 @@ function checkout(){
   window.location.href=
     `mailto:davenanother@gmail.com?subject=Innocent Clothing Order&body=${encodeURIComponent(body)}`;
 }
+
+const cartEl=document.getElementById("cart");
 </script>
 
 </body>
 </html>
-
