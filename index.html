@@ -87,6 +87,11 @@ main{max-width:1100px;margin:70px auto 24px;padding:0 14px}
   text-align:center;
   font-weight:600;
   font-size:14px;
+  margin-bottom:4px;
+}
+.taxed{
+  font-size:11px;
+  color:#555;
   margin-bottom:6px;
 }
 .options{
@@ -197,6 +202,38 @@ button:hover{
   border-radius:10px;
 }
 
+/* COOKIE BANNER */
+.cookie-banner{
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  background:#fff;
+  color:#111;
+  padding:12px 20px;
+  border-radius:15px 15px 0 0;
+  box-shadow:0 -3px 15px rgba(0,0,0,.2);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  animation:slideUp 0.5s forwards;
+  font-size:14px;
+  z-index:4000;
+}
+.cookie-banner button{
+  background:var(--accent);
+  color:#fff;
+  padding:6px 12px;
+  border-radius:999px;
+  border:none;
+  cursor:pointer;
+}
+@keyframes slideUp{
+  from{transform:translate(-50%,100%);}
+  to{transform:translate(-50%,0);}
+}
+
 /* RESPONSIVE */
 @media(max-width:500px){
   .cart-panel{width:95%; height:85%;}
@@ -217,9 +254,10 @@ button:hover{
 <section class="products">
 
 <!-- Shirt -->
-<div class="product" data-name="Innocent Shirt" data-price="30">
+<div class="product" data-name="Innocent Shirt" data-price="24">
   <img src="INNOCENT shirts.png" alt="Shirt" onclick="openPreview(this)">
-  <div class="price">$30.00</div>
+  <div class="price">$24.00</div>
+  <div class="taxed">Price includes taxes</div>
   <div class="options">
     <select>
       <option>XS</option>
@@ -227,21 +265,6 @@ button:hover{
       <option>M</option>
       <option>L</option>
       <option>XL</option>
-    </select>
-    <input type="number" value="1" min="1">
-    <button onclick="addToCart(this)">Add to Cart</button>
-  </div>
-</div>
-
-<!-- Cookie -->
-<div class="product" data-name="Chocolate Cookie" data-price="5">
-  <img src="cookie.png" alt="Cookie" onclick="openPreview(this)">
-  <div class="price">$5.00</div>
-  <div class="options">
-    <select>
-      <option>Single</option>
-      <option>Pack of 6</option>
-      <option>Pack of 12</option>
     </select>
     <input type="number" value="1" min="1">
     <button onclick="addToCart(this)">Add to Cart</button>
@@ -269,6 +292,12 @@ button:hover{
   <img id="previewImg">
 </div>
 
+<!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookieBanner">
+  <div>We use cookies to improve your experience.</div>
+  <button onclick="acceptCookies()">Accept</button>
+</div>
+
 <script>
 const cart=[];
 const cartEl=document.getElementById("cart");
@@ -279,6 +308,25 @@ const firstName=document.getElementById("firstName");
 const lastName=document.getElementById("lastName");
 const preview=document.getElementById("preview");
 const previewImg=document.getElementById("previewImg");
+const cookieBanner=document.getElementById("cookieBanner");
+
+// Cookies
+function setCookie(name,value,days){
+  const d=new Date();
+  d.setTime(d.getTime()+(days*24*60*60*1000));
+  document.cookie=`${name}=${value};expires=${d.toUTCString()};path=/`;
+}
+function getCookie(name){
+  const v=document.cookie.match('(^|;) ?'+name+'=([^;]*)(;|$)');
+  return v?v[2]:null;
+}
+function acceptCookies(){
+  setCookie('acceptedCookies','true',365);
+  cookieBanner.style.display='none';
+}
+window.onload=function(){
+  if(getCookie('acceptedCookies')) cookieBanner.style.display='none';
+};
 
 function openPreview(img){
   previewImg.src=img.src;
@@ -292,9 +340,9 @@ function addToCart(btn){
   const product=btn.closest(".product");
   const name=product.dataset.name;
   const price=Number(product.dataset.price);
-  const option=product.querySelector("select").value;
+  const size=product.querySelector("select").value;
   const qty=Math.max(1,Number(product.querySelector("input").value));
-  cart.push({name,option,qty,price});
+  cart.push({name,size,qty,price});
   renderCart();
 }
 
@@ -302,11 +350,11 @@ function renderCart(){
   cartItems.innerHTML="";
   let total=0;
   let count=0;
-  cart.forEach((i,idx)=>{
+  cart.forEach((i)=>{
     total+=i.price*i.qty;
     count+=i.qty;
     const li=document.createElement("li");
-    li.textContent=`${i.name} — ${i.option} ×${i.qty}`;
+    li.textContent=`${i.name} — ${i.size} ×${i.qty}`;
     cartItems.appendChild(li);
   });
   cartCount.textContent=count;
@@ -327,10 +375,9 @@ function checkout(){
   let total=0;
   cart.forEach((i,idx)=>{
     total+=i.price*i.qty;
-    body+=`${idx+1}. ${i.name} - ${i.option} ×${i.qty}\n`;
+    body+=`${idx+1}. ${i.name} - ${i.size} ×${i.qty}\n`;
   });
   body+=`\nTotal: $${total.toFixed(2)}`;
-
   window.location.href=`mailto:davenanother@gmail.com?subject=Innocent Clothing Order&body=${encodeURIComponent(body)}`;
 }
 </script>
