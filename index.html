@@ -5,21 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Innocent Clothing</title>
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
-<!-- Favicon -->
-<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.png">
 
 <style>
 :root{
   --accent:#000;
   --bg:#f6f6f6;
   --card:#fff;
-  --radius:14px;
-  --error:#e74c3c;
-  --shadow:0 10px 25px rgba(0,0,0,.08);
-  --transition:.25s;
+  --radius:12px;
+  --shadow:0 6px 18px rgba(0,0,0,.08);
 }
 
 /* RESET */
@@ -28,13 +23,7 @@ body{
   font-family:Inter,sans-serif;
   background:var(--bg);
   color:#111;
-  line-height:1.5;
 }
-h1,h2,h3{
-  font-family:Cinzel,serif;
-  letter-spacing:.04em;
-}
-img{display:block;max-width:100%;height:auto}
 
 /* HEADER */
 header{
@@ -43,75 +32,71 @@ header{
   z-index:1000;
   background:#fff;
   border-bottom:1px solid #ddd;
-  padding:14px 24px;
+  padding:12px 20px;
   display:flex;
   justify-content:space-between;
   align-items:center;
 }
-header h1{font-size:20px}
+h1{font-family:Cinzel,serif;font-size:18px}
 .cart-btn{
-  background:var(--accent);
+  background:#000;
   color:#fff;
   border:none;
-  padding:9px 18px;
+  padding:7px 14px;
   border-radius:999px;
   font-weight:600;
   cursor:pointer;
 }
-.cart-btn:hover{opacity:.85}
 
 /* MAIN */
-main{max-width:1200px;margin:auto;padding:32px 16px}
+main{max-width:1100px;margin:auto;padding:24px 14px}
 .products{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  gap:22px;
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:16px;
 }
 
-/* PRODUCT CARD */
+/* PRODUCT CARD (SMALL) */
 .product{
   background:var(--card);
   border-radius:var(--radius);
   box-shadow:var(--shadow);
-  padding:14px;
+  padding:10px;
   display:flex;
   flex-direction:column;
 }
 .product img{
-  height:160px;
+  height:120px;
   object-fit:contain;
-  margin-bottom:12px;
+  margin-bottom:6px;
   cursor:pointer;
 }
 .price{
   text-align:center;
   font-weight:600;
-  font-size:16px;
-  margin-bottom:10px;
+  font-size:14px;
+  margin-bottom:6px;
 }
 .options{
   display:flex;
   flex-direction:column;
-  gap:8px;
+  gap:6px;
 }
 select,input{
-  padding:9px;
-  border-radius:8px;
+  padding:7px;
+  border-radius:6px;
   border:1px solid #ccc;
-  font-size:14px;
+  font-size:13px;
 }
-input.error{border-color:var(--error)}
-.options button{
-  margin-top:4px;
-  padding:11px;
+button{
+  padding:8px;
   border-radius:999px;
   border:none;
-  background:var(--accent);
+  background:#000;
   color:#fff;
   font-weight:600;
   cursor:pointer;
 }
-.options button:hover{opacity:.85}
 
 /* CART */
 .cart{
@@ -120,44 +105,35 @@ input.error{border-color:var(--error)}
   background:rgba(0,0,0,.5);
   display:none;
   justify-content:flex-end;
-  z-index:2000;
 }
 .cart-panel{
-  width:360px;
+  width:340px;
   background:#fff;
   height:100%;
-  padding:22px;
+  padding:18px;
   overflow:auto;
-}
-.cart-panel h3{margin-bottom:14px}
-.cart-panel input{
-  width:100%;
-  margin-top:10px;
 }
 .cart ul{
   list-style:none;
-  margin:16px 0;
+  margin:12px 0;
 }
 .cart li{
-  padding:8px 0;
+  font-size:13px;
+  padding:6px 0;
   border-bottom:1px solid #eee;
-  font-size:14px;
 }
 .cart-total{
   font-weight:600;
-  margin-top:10px;
+  margin-top:8px;
 }
-button.secondary{
-  margin-top:10px;
-  width:100%;
-  padding:12px;
-  border-radius:999px;
-  border:1px solid #aaa;
+.secondary{
   background:#fff;
-  cursor:pointer;
+  color:#111;
+  border:1px solid #aaa;
+  margin-top:8px;
 }
 
-/* MODAL */
+/* IMAGE PREVIEW */
 .modal{
   position:fixed;
   inset:0;
@@ -165,17 +141,10 @@ button.secondary{
   display:none;
   justify-content:center;
   align-items:center;
-  z-index:3000;
 }
 .modal img{
   max-width:90%;
   max-height:90%;
-  border-radius:12px;
-}
-
-/* MOBILE */
-@media(max-width:600px){
-  .cart-panel{width:90%}
 }
 </style>
 </head>
@@ -191,29 +160,21 @@ button.secondary{
 <main>
 <section class="products">
 
-<div class="product" data-name="Innocent Shirt">
-  <img src="INNOCENT shirt.png" alt="Innocent Shirt" onclick="openPreview(this)">
-  <div class="price">$30.00</div>
+<!-- PRODUCT CARD (duplicate and edit name/price later) -->
+<div class="product" data-name="Innocent Design" data-price="30">
+  <img src="INNOCENT shirt.png" alt="Product" onclick="openPreview(this)">
+  <div class="price">$24.99</div>
 
   <div class="options">
-    <select class="size-select" onchange="updatePrice(this)">
-      <optgroup label="Adult">
-        <option value="XS" data-price="30">XS</option>
-        <option value="S" data-price="30">S</option>
-        <option value="M" data-price="30">M</option>
-        <option value="L" data-price="30">L</option>
-        <option value="XL" data-price="30">XL</option>
-      </optgroup>
-      <optgroup label="Children">
-        <option value="KXS" data-price="25">KXS</option>
-        <option value="KS" data-price="25">KS</option>
-        <option value="KM" data-price="25">KM</option>
-        <option value="KL" data-price="25">KL</option>
-        <option value="KXL" data-price="25">KXL</option>
-      </optgroup>
+    <select>
+      <option>XS</option>
+      <option>S</option>
+      <option>M</option>
+      <option>L</option>
+      <option>XL</option>
     </select>
 
-    <input type="number" min="1" value="1">
+    <input type="number" value="1" min="1">
     <button onclick="addToCart(this)">Add to Cart</button>
   </div>
 </div>
@@ -221,11 +182,11 @@ button.secondary{
 </section>
 </main>
 
+<!-- CART -->
 <div class="cart" id="cart">
   <div class="cart-panel">
     <h3>Your Cart</h3>
-    <input id="firstName" placeholder="First Name (required)">
-    <input id="lastName" placeholder="Last Name (optional)">
+    <input id="customerName" placeholder="First Name (required)">
     <ul id="cartItems"></ul>
     <div class="cart-total" id="cartTotal">$0.00</div>
     <button onclick="checkout()">Checkout</button>
@@ -233,6 +194,7 @@ button.secondary{
   </div>
 </div>
 
+<!-- IMAGE MODAL -->
 <div class="modal" id="preview" onclick="closePreview(event)">
   <img id="previewImg">
 </div>
@@ -243,10 +205,9 @@ const cartEl=document.getElementById("cart");
 const cartItems=document.getElementById("cartItems");
 const cartCount=document.getElementById("cartCount");
 const cartTotal=document.getElementById("cartTotal");
+const customerName=document.getElementById("customerName");
 const preview=document.getElementById("preview");
 const previewImg=document.getElementById("previewImg");
-const firstName=document.getElementById("firstName");
-const lastName=document.getElementById("lastName");
 
 function openPreview(img){
   previewImg.src=img.src;
@@ -256,18 +217,12 @@ function closePreview(e){
   if(e.target===preview) preview.style.display="none";
 }
 
-function updatePrice(select){
-  const price=Number(select.selectedOptions[0].dataset.price);
-  select.closest(".product")
-    .querySelector(".price").textContent=`$${price.toFixed(2)}`;
-}
-
 function addToCart(btn){
   const product=btn.closest(".product");
-  const qty=Math.max(1,Number(product.querySelector("input").value||1));
-  const size=product.querySelector(".size-select").value;
-  const price=Number(product.querySelector(".size-select").selectedOptions[0].dataset.price);
   const name=product.dataset.name;
+  const price=Number(product.dataset.price);
+  const size=product.querySelector("select").value;
+  const qty=Math.max(1,Number(product.querySelector("input").value));
 
   cart.push({name,size,qty,price});
   renderCart();
@@ -282,7 +237,7 @@ function renderCart(){
     total+=i.price*i.qty;
     count+=i.qty;
     const li=document.createElement("li");
-    li.textContent=`${i.name} — ${i.size} ×${i.qty} ($${i.price})`;
+    li.textContent=`${i.name} — ${i.size} ×${i.qty}`;
     cartItems.appendChild(li);
   });
 
@@ -294,15 +249,24 @@ function openCart(){cartEl.style.display="flex";}
 function closeCart(){cartEl.style.display="none";}
 
 function checkout(){
-  if(!cart.length){alert("Your cart is empty.");return;}
-  if(!firstName.value.trim()){
-    firstName.classList.add("error");
-    firstName.focus();
+  if(!cart.length) return alert("Your cart is empty.");
+  if(!customerName.value.trim()){
+    customerName.focus();
     return;
   }
-  firstName.classList.remove("error");
 
-  alert("Order ready. Copy cart details and send via email.");
+  let body=`Customer: ${customerName.value}\n\n`;
+  let total=0;
+
+  cart.forEach((i,idx)=>{
+    total+=i.price*i.qty;
+    body+=`${idx+1}. ${i.name} - ${i.size} ×${i.qty}\n`;
+  });
+
+  body+=`\nTotal: $${total.toFixed(2)}`;
+
+  window.location.href=
+    `mailto:davenanother@gmail.com?subject=Innocent Clothing Order&body=${encodeURIComponent(body)}`;
 }
 </script>
 
