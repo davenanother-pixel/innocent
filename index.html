@@ -1,188 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Innocent Clothing</title>
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- FAVICONS -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Innocent Clothing</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
 :root{
   --accent:#000;
   --bg:#f5f5f5;
   --card:#fff;
   --radius:20px;
-  --motion:1;
-  --density:1;
 }
+
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Inter,sans-serif;background:var(--bg);color:#111;transition:background .3s, color .3s}
-h1,h2{font-family:Cinzel,serif}
 
-header{position:sticky;top:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:16px 32px;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:1px solid #ddd}
-header h1{letter-spacing:2px}
-header button{background:none;border:none;font-size:18px;cursor:pointer}
+body{
+  font-family:Inter,sans-serif;
+  background:var(--bg);
+  color:#111;
+}
 
-main{max-width:1200px;margin:auto;padding:40px}
-section{padding:40px 0}
+h1,h2,h3{font-family:Cinzel,serif}
 
-/* PRODUCT */
-.product{background:var(--card);border-radius:var(--radius);padding:24px;box-shadow:0 15px 35px rgba(0,0,0,.1);margin-bottom:40px;transition:transform calc(.3s * var(--motion))}
-.product:hover{transform:translateY(-5px)}
-.viewer{position:relative}
-.viewer img{width:100%;border-radius:18px;cursor:pointer;transition:transform .3s}
-.viewer img:hover{transform:scale(calc(1+.03*var(--motion)))}
-.viewer-controls{display:flex;gap:10px;justify-content:center;margin-top:12px}
-.viewer-controls button{padding:6px 16px;border-radius:999px;border:1px solid #ccc;background:#fff;cursor:pointer}
-.options{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
-select,input{padding:10px;border-radius:10px;border:1px solid #ccc}
-button.primary{margin-top:20px;width:100%;padding:14px;border-radius:999px;border:none;background:var(--accent);color:#fff;font-size:16px;cursor:pointer}
+header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:#fff;
+  border-bottom:1px solid #ddd;
+  padding:16px 32px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+header button{
+  background:none;
+  border:none;
+  cursor:pointer;
+  font-size:14px;
+}
+
+main{
+  max-width:1200px;
+  margin:auto;
+  padding:40px 20px;
+}
+
+.hero{
+  text-align:center;
+  padding:60px 20px;
+}
+
+.hero p{opacity:.7;margin-top:10px}
+
+/* PRODUCTS */
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:32px;
+  margin-top:40px;
+}
+
+.product{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:24px;
+  box-shadow:0 15px 35px rgba(0,0,0,.1);
+}
+
+.viewer img{
+  width:100%;
+  border-radius:16px;
+  cursor:pointer;
+}
+
+.viewer-controls{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:10px;
+}
+
+.viewer-controls button{
+  padding:6px 14px;
+  border-radius:999px;
+  border:1px solid #ccc;
+  background:#fff;
+  cursor:pointer;
+}
+
+.options{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:20px;
+}
+
+select,input{
+  padding:10px;
+  border-radius:10px;
+  border:1px solid #ccc;
+}
+
+button.primary{
+  margin-top:16px;
+  width:100%;
+  padding:14px;
+  border-radius:999px;
+  border:none;
+  background:var(--accent);
+  color:#fff;
+  cursor:pointer;
+}
 
 /* CART */
-.cart{position:fixed;right:-380px;top:0;height:100%;width:360px;background:#fff;box-shadow:-10px 0 40px rgba(0,0,0,.2);padding:24px;transition:.4s;z-index:5000}
-.cart.open{right:0}
-.cart h3{margin-top:0}
-.cart ul{list-style:none;padding:0;max-height:240px;overflow:auto}
-.cart li{margin-bottom:8px;font-size:14px}
+.cart{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  display:none;
+  justify-content:flex-end;
+  z-index:2000;
+}
+
+.cart-panel{
+  background:#fff;
+  width:360px;
+  height:100%;
+  padding:24px;
+  overflow:auto;
+}
+
+.cart ul{
+  list-style:none;
+  margin:16px 0;
+}
+
+.cart li{
+  font-size:14px;
+  margin-bottom:8px;
+}
+
+/* INFO */
+.info{
+  margin-top:80px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+}
+
+.info section{
+  background:var(--card);
+  padding:24px;
+  border-radius:var(--radius);
+  box-shadow:0 15px 35px rgba(0,0,0,.1);
+}
+
+footer{
+  text-align:center;
+  padding:40px 20px;
+  opacity:.6;
+}
 
 /* MODAL */
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:5000}
-.modal img{max-width:90%;max-height:90%;border-radius:18px}
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:3000;
+}
 
-/* SETTINGS */
-.settings{position:fixed;left:-320px;top:0;height:100%;width:300px;background:#fff;box-shadow:10px 0 40px rgba(0,0,0,.2);padding:20px;transition:.4s;z-index:4000}
-.settings.open{left:0}
-.settings label{font-size:14px;display:block;margin-bottom:10px}
+.modal img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:18px;
+}
 
-/* ABOUT / CONTACT */
-.about, .contact{background:var(--card);padding:24px;border-radius:var(--radius);box-shadow:0 18px 40px rgba(0,0,0,.1);margin-bottom:40px}
-.about h2,.contact h2{margin-bottom:12px}
-
-/* MOBILE OPTIMIZATION */
-.mobile body{background:#000;color:#fff}
-.mobile header{background:#000;color:#fff;border:none}
-.mobile main{padding:16px}
-.mobile .product{border-radius:0}
-.mobile .viewer img{border-radius:0}
+/* MOBILE */
+.mobile .info{grid-template-columns:1fr}
 </style>
 </head>
+
 <body>
 
 <header>
   <h1>Innocent Clothing</h1>
-  <div>
-    <button onclick="toggleSettings()">⚙️</button>
-    <button onclick="toggleCart()">🛒 (<span id="cartCount">0</span>)</button>
-  </div>
+  <button onclick="openCart()">Cart (<span id="cartCount">0</span>)</button>
 </header>
 
 <main>
 
-  <!-- HERO -->
-  <section class="hero">
-    <h2>Innocent Clothing</h2>
-    <p>Original. Minimal. Future.</p>
-  </section>
+<section class="hero">
+  <h2>Innocent Clothing</h2>
+  <p>Original. Minimal. Future.</p>
+</section>
 
-  <!-- PRODUCT -->
-  <section class="product">
-    <h2>Innocent Graffiti Design</h2>
-    <div class="viewer">
-      <img id="productImage" src="Innocent (9).png" onclick="openPreview()">
-      <div class="viewer-controls">
-        <button onclick="setSide('front')">Front</button>
-        <button onclick="setSide('back')">Back</button>
-      </div>
+<!-- PRODUCTS -->
+<section class="products" id="products">
+<script>
+for(let i=1;i<=30;i++){
+document.write(`
+<div class="product" data-side="front">
+  <div class="viewer">
+    <img src="example.png" onclick="openPreview(this)">
+    <div class="viewer-controls">
+      <button onclick="setSide(this,'front')">Front</button>
+      <button onclick="setSide(this,'back')">Back</button>
     </div>
+  </div>
 
-    <div class="options">
-      <input id="customerName" type="text" placeholder="Full Name (optional)">
-      <select id="sizeSelect">
-        <optgroup label="Kids">
-          <option value="KXS">KXS</option>
-          <option value="KS">KS</option>
-          <option value="KM">KM</option>
-          <option value="KL">KL</option>
-          <option value="KXL">KXL</option>
-        </optgroup>
-        <optgroup label="Adults">
-          <option value="AXS">XS</option>
-          <option value="AS">S</option>
-          <option value="AM">M</option>
-          <option value="AL">L</option>
-          <option value="AXL">XL</option>
-          <option value="AXXL">AXL</option>
-        </optgroup>
-      </select>
-      <input id="qtyInput" type="number" min="1" value="1">
-    </div>
+  <div class="options">
+    <select>
+      <optgroup label="Kids">
+        <option>KXS</option><option>KS</option><option>KM</option><option>KL</option>
+      </optgroup>
+      <optgroup label="Adults">
+        <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option>
+      </optgroup>
+    </select>
+    <input type="number" min="1" value="1">
+  </div>
 
-    <!--Product 2-->
-      <section class="product">
-    <h2>Innocent Angel Design</h2>
-    <div class="viewer">
-      <img id="productImage" src="INNOCENT shirts.png" onclick="openPreview()">
-      <div class="viewer-controls">
-        <button onclick="setSide('front')">Front</button>
-        <button onclick="setSide('back')">Back</button>
-      </div>
-    </div>
+  <button class="primary" onclick="addToCart(this)">Add to Cart</button>
+</div>
+`);
+}
+</script>
+</section>
 
-    <div class="options">
-      <input id="customerName" type="text" placeholder="Full Name (optional)">
-      <select id="sizeSelect">
-        <optgroup label="Kids">
-          <option value="KXS">KXS</option>
-          <option value="KS">KS</option>
-          <option value="KM">KM</option>
-          <option value="KL">KL</option>
-          <option value="KXL">KXL</option>
-        </optgroup>
-        <optgroup label="Adults">
-          <option value="AXS">XS</option>
-          <option value="AS">S</option>
-          <option value="AM">M</option>
-          <option value="AL">L</option>
-          <option value="AXL">XL</option>
-          <option value="AXXL">AXL</option>
-        </optgroup>
-      </select>
-      <input id="qtyInput" type="number" min="1" value="1">
-    </div>
-
-    <button class="primary" onclick="addToCart()">Add to Cart</button>
+<!-- INFO -->
+<section class="info">
+  <section>
+    <h3>About Innocent Clothing</h3>
+    <p>We design modern, premium-quality apparel for the future.</p>
   </section>
-
-  <!-- ABOUT -->
-  <section class="about">
-    <h2>About Innocent Clothing</h2>
-    <p>We design modern, premium-quality apparel for the future. Every product is crafted for style, comfort, and timeless minimalism.</p>
+  <section>
+    <h3>Contact</h3>
+    <p><a href="mailto:davenanother@gmail.com">davenanother@gmail.com</a></p>
   </section>
-
-  <!-- CONTACT -->
-  <section class="contact">
-    <h2>Contact Us</h2>
-    <p>Questions? Reach out at <a href="mailto:davenanother@gmail.com">davenanother@gmail.com</a></p>
-  </section>
+</section>
 
 </main>
 
+<footer>© 2026 Innocent Clothing</footer>
+
 <!-- CART -->
 <div class="cart" id="cart">
-  <h3>Your Cart</h3>
-  <ul id="cartItems"></ul>
-  <p>Total: $<span id="cartTotal">0.00</span></p>
-  <a id="checkoutLink" target="_blank">
-    <button class="primary">Checkout (Email)</button>
-  </a>
-</div>
+  <div class="cart-panel">
+    <h3>Your Cart</h3>
 
-<!-- SETTINGS -->
-<div class="settings" id="settings">
-  <h3>UI Settings</h3>
-  <label>Accent Color<input type="color" onchange="setAccent(this.value)"></label>
-  <label>Motion<input type="range" min="0" max="1" step=".1" value="1" onchange="setMotion(this.value)"></label>
-  <label>Density<input type="range" min=".8" max="1.2" step=".1" value="1" onchange="setDensity(this.value)"></label>
+    <input id="firstName" placeholder="First name">
+    <input id="lastName" placeholder="Last name (optional)" style="margin-top:10px">
+
+    <ul id="cartItems"></ul>
+
+    <p>Total items: <span id="cartCountPanel">0</span></p>
+
+    <button class="primary" onclick="checkout()">Checkout</button>
+    <button onclick="closeCart()" style="margin-top:10px">Close</button>
+  </div>
 </div>
 
 <!-- PREVIEW -->
@@ -191,83 +280,61 @@ button.primary{margin-top:20px;width:100%;padding:14px;border-radius:999px;borde
 </div>
 
 <script>
-/* DEVICE DETECTION */
-if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+/* DEVICE */
+if(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)){
   document.documentElement.classList.add("mobile");
 }
 
-/* PRODUCT VIEW */
-let currentSide="front";
-const productImage=document.getElementById("productImage");
-const previewImg=document.getElementById("previewImg");
-const preview=document.getElementById("preview");
-
-function setSide(side){
-  currentSide=side;
-  if(side==='front'){
-    productImage.src='Innocent (9).png';
-    if(preview.style.display==='flex') previewImg.src='Innocent (9).png';
-  }else{
-    productImage.src='placeholder.png';
-    if(preview.style.display==='flex') previewImg.src='placeholder.png';
-  }
+/* FRONT / BACK */
+function setSide(btn,side){
+  const product=btn.closest(".product");
+  const img=product.querySelector("img");
+  product.dataset.side=side;
+  img.src=side==="front"?"example.png":"placeholder.png";
 }
 
-function openPreview(){
-  preview.style.display="flex";
-  previewImg.src=(currentSide==='front')?'Innocent (9).png':'placeholder.png';
+function openPreview(img){
+  document.getElementById("previewImg").src=img.src;
+  document.getElementById("preview").style.display="flex";
 }
-function closePreview(){preview.style.display="none"}
+function closePreview(){document.getElementById("preview").style.display="none"}
 
-/* CART LOGIC */
+/* CART */
 let cart=[];
-const cartEl=document.getElementById("cart");
-const cartCount=document.getElementById("cartCount");
-const cartItems=document.getElementById("cartItems");
-const cartTotal=document.getElementById("cartTotal");
-const sizeSelect=document.getElementById("sizeSelect");
-const qtyInput=document.getElementById("qtyInput");
-const checkoutLink=document.getElementById("checkoutLink");
-const customerNameInput=document.getElementById("customerName");
-
-function toggleCart(){cartEl.classList.toggle("open")}
-function addToCart(){
-  const size=sizeSelect.value;
-  const qty=parseInt(qtyInput.value);
-  cart.push({size,qty,price:24.97});
+function addToCart(btn){
+  const product=btn.closest(".product");
+  const size=product.querySelector("select").value;
+  const qty=product.querySelector("input").value;
+  cart.push({size,qty});
   renderCart();
 }
 
 function renderCart(){
-  const name=customerNameInput.value||"Customer";
-  cartItems.innerHTML="";
-  let total=0,count=0;
-  cart.forEach(i=>{
-    total+=i.price*i.qty;
-    count+=i.qty;
+  const list=document.getElementById("cartItems");
+  list.innerHTML="";
+  cart.forEach((i,idx)=>{
     const li=document.createElement("li");
-    li.textContent=`Innocent Graffiti Design — ${i.size} × ${i.qty}`;
-    cartItems.appendChild(li);
+    li.textContent=`Item ${idx+1} — Size ${i.size} × ${i.qty}`;
+    list.appendChild(li);
   });
-  cartTotal.textContent=total.toFixed(2);
-  cartCount.textContent=count;
-
-  checkoutLink.href="mailto:davenanother@gmail.com?subject="+encodeURIComponent("Innocent Order from "+name)+"&body="+
-    encodeURIComponent(
-      `Customer Name: ${name}\n\nOrder Items:\n`+
-      cart.map(i=>`Size ${i.size} x${i.qty}`).join("\n")+
-      `\n\nTotal: $${total.toFixed(2)}`
-    );
+  document.getElementById("cartCount").textContent=cart.length;
+  document.getElementById("cartCountPanel").textContent=cart.length;
 }
 
-/* SETTINGS */
-const settings=document.getElementById("settings");
-function toggleSettings(){settings.classList.toggle("open")}
-function setAccent(v){document.documentElement.style.setProperty("--accent",v)}
-function setMotion(v){document.documentElement.style.setProperty("--motion",v)}
-function setDensity(v){
-  document.documentElement.style.setProperty("--density",v);
-  document.body.style.zoom=v;
+function openCart(){document.getElementById("cart").style.display="flex"}
+function closeCart(){document.getElementById("cart").style.display="none"}
+
+function checkout(){
+  const first=document.getElementById("firstName").value||"Customer";
+  const last=document.getElementById("lastName").value;
+  const name=last?`${first} ${last}`:first;
+
+  const body=
+    `Customer Name: ${name}\n\n`+
+    cart.map((i,n)=>`Item ${n+1}: Size ${i.size} x${i.qty}`).join("\n");
+
+  window.location.href=
+    `mailto:davenanother@gmail.com?subject=${encodeURIComponent("Innocent Clothing Order")}&body=${encodeURIComponent(body)}`;
 }
 </script>
 
