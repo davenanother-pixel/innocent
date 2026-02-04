@@ -7,188 +7,136 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon.ico">
 <style>
-:root{
-  --accent:#000;
-  --accent-hover:#333;
-  --bg:#f6f6f6;
-  --card:#fff;
-  --radius:15px;
-  --shadow:0 6px 18px rgba(0,0,0,.1);
+:root {
+  --accent: #000;
+  --accent-hover: #333;
+  --bg: #f6f6f6;
+  --card: #fff;
+  --radius: 15px;
+  --shadow: 0 6px 18px rgba(0,0,0,.1);
+  --text: #111;
+  --secondary: #555;
+  --transition: 0.3s ease;
 }
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:Inter,sans-serif;background:var(--bg);color:#111;overflow-x:hidden;}
+* { box-sizing: border-box; margin:0; padding:0; }
+body { font-family: Inter,sans-serif; background: var(--bg); color: var(--text); overflow-x:hidden; scroll-behavior: smooth; }
 
 /* HEADER */
-header{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:#fff;
-  border-bottom:1px solid #ddd;
-  padding:12px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+header {
+  position: sticky; top:0; z-index:1000;
+  background:#fff; border-bottom:1px solid #ddd;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:16px 24px;
   box-shadow:0 2px 6px rgba(0,0,0,.05);
   border-radius:0 0 var(--radius) var(--radius);
 }
-h1{font-family:Cinzel,serif;font-size:20px;margin:0;}
-.cart-btn{
-  background:var(--accent);
-  color:#fff;
-  border:none;
-  padding:8px 16px;
-  border-radius:999px;
-  font-weight:600;
-  cursor:pointer;
-  transition:background .2s;
+h1 { font-family:Cinzel, serif; font-size:24px; }
+nav a {
+  margin-left:16px; font-weight:600; color:var(--accent);
+  text-decoration:none; transition:color var(--transition);
 }
-.cart-btn:hover{background:var(--accent-hover);}
+nav a:hover { color: var(--accent-hover); }
+.cart-btn {
+  background: var(--accent); color:#fff; border:none;
+  padding:10px 18px; border-radius:999px; font-weight:600;
+  cursor:pointer; transition: all var(--transition);
+}
+.cart-btn:hover { background: var(--accent-hover); transform: scale(1.05); }
 
-/* MAIN */
-main{max-width:1100px;margin:70px auto 24px;padding:0 14px;}
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:16px;
-  justify-items:center;
+/* HERO / WELCOME */
+#welcome {
+  position:relative; height:80vh; display:flex; justify-content:center; align-items:center;
+  background:url('banner.jpg') center/cover no-repeat; color:#fff; text-align:center; overflow:hidden;
 }
+#welcome .overlay {
+  background: rgba(0,0,0,0.5); padding:40px; border-radius:15px;
+  animation:fadeInDown 1s;
+}
+#welcome h1 { font-size:48px; margin-bottom:20px; font-family:Cinzel, serif; animation:fadeIn 1s 0.3s forwards; opacity:0; }
+#welcome p { font-size:20px; margin-bottom:30px; animation:fadeIn 1s 0.6s forwards; opacity:0; }
+#welcome a {
+  display:inline-block; background:var(--accent); color:#fff; padding:14px 28px;
+  border-radius:999px; font-weight:600; font-size:18px; text-decoration:none;
+  transition: all var(--transition); animation:fadeIn 1s 0.9s forwards; opacity:0;
+}
+#welcome a:hover { background: var(--accent-hover); transform: scale(1.05); }
 
-/* PRODUCT CARD */
-.product{
-  background:var(--card);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  padding:10px 8px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  transition:transform .2s, box-shadow .2s;
-  max-width:180px;
+/* PRODUCTS SECTION */
+section { padding:60px 16px; }
+#shop { max-width:1100px; margin:0 auto; }
+.products {
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:20px; justify-items:center;
 }
-.product:hover{
-  transform:translateY(-3px);
-  box-shadow:0 8px 24px rgba(0,0,0,.12);
+.product {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding:18px 14px; display:flex; flex-direction:column; align-items:center;
+  transition: transform var(--transition), box-shadow var(--transition);
+  max-width:220px; opacity:0; animation:fadeInUp 1s forwards;
 }
-.product img{
-  width:140px;
-  height:140px;
-  object-fit:contain;
-  margin-bottom:6px;
-  cursor:pointer;
-  border-radius:12px;
-}
-.price{
-  font-size:15px;
-  margin-bottom:2px;
-  text-align:center;
-}
-.taxed{
-  font-size:11px;
-  margin-bottom:6px;
-  text-align:center;
-  color:#555;
-}
-.options{
-  display:flex;
-  flex-direction:column;
-  gap:4px;
-  width:100%;
-}
-select,input{
-  padding:5px;
-  font-size:13px;
-  border-radius:6px;
-  border:1px solid #ccc;
-  width:100%;
-}
-button{
-  padding:6px;
-  font-size:13px;
-  border-radius:999px;
-  border:none;
-  background:var(--accent);
-  color:#fff;
-  font-weight:600;
-  cursor:pointer;
-  transition:background .2s;
-}
-button:hover{background:var(--accent-hover);}
+.product:nth-child(1){ animation-delay:0.2s; }
+.product:nth-child(2){ animation-delay:0.4s; }
+.product:hover { transform: translateY(-6px); box-shadow:0 12px 30px rgba(0,0,0,.15); }
+.product img { width:170px; height:170px; object-fit:contain; margin-bottom:12px; border-radius:14px; cursor:pointer; transition: transform var(--transition); }
+.product img:hover { transform: scale(1.05); }
+.price { font-size:16px; margin-bottom:4px; }
+.taxed { font-size:12px; margin-bottom:8px; color:var(--secondary); text-align:center; }
+.options { display:flex; flex-direction:column; gap:6px; width:100%; }
+select,input { padding:6px; font-size:14px; border-radius:6px; border:1px solid #ccc; width:100%; }
+button { padding:8px; font-size:14px; border-radius:999px; border:none; background:var(--accent); color:#fff; font-weight:600; cursor:pointer; transition:all var(--transition); }
+button:hover { background: var(--accent-hover); transform: scale(1.05); }
+button.secondary { background:#fff; color:var(--text); border:1px solid #aaa; }
 
-/* FULLSCREEN CART */
-.cart{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.6);
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:2000;
-  opacity:0;
-  transition:opacity .3s ease;
+/* CART */
+.cart {
+  position: fixed; inset:0; background: rgba(0,0,0,0.6);
+  display:none; justify-content:center; align-items:center; z-index:2000;
+  opacity:0; transition:opacity 0.3s ease;
 }
-.cart.show{display:flex;opacity:1;}
-.cart-panel{
-  width:90%;
-  max-width:500px;
-  background:#fff;
-  height:90%;
-  border-radius:var(--radius);
-  padding:20px;
-  display:flex;
-  flex-direction:column;
-  position:relative;
-  overflow:auto;
-  transform:translateY(-30px);
-  transition:transform .3s ease;
+.cart.show { display:flex; opacity:1; }
+.cart-panel {
+  width:90%; max-width:500px; background:#fff; height:90%; border-radius:var(--radius);
+  padding:22px; display:flex; flex-direction:column; position:relative; overflow:auto;
+  transform:translateY(-30px); transition:transform 0.3s ease;
 }
-.cart.show .cart-panel{transform:translateY(0);}
-.cart-panel h3{text-align:center;margin-bottom:16px;}
-.cart-panel input{margin-bottom:12px;}
-.cart ul{list-style:none;margin:12px 0;flex-grow:1;}
-.cart li{font-size:14px;padding:8px 0;border-bottom:1px solid #eee;}
-.cart-total{font-weight:600;margin-top:12px;font-size:16px;text-align:right;}
-.cart-panel button{margin-top:8px;}
-.secondary{background:#fff;color:#111;border:1px solid #aaa;}
+.cart.show .cart-panel { transform:translateY(0); }
+.cart-panel h3{text-align:center; margin-bottom:16px;}
+.cart-panel input{margin-bottom:12px; padding:8px; font-size:14px;}
+.cart ul{list-style:none; margin:12px 0; flex-grow:1;}
+.cart li{font-size:14px; padding:8px 0; border-bottom:1px solid #eee;}
+.cart-total{font-weight:600; margin-top:12px; font-size:16px; text-align:right;}
 
-/* IMAGE MODAL */
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;justify-content:center;align-items:center;z-index:3000;}
-.modal img{max-width:90%;max-height:90%;border-radius:12px;}
+/* MODAL */
+.modal { position: fixed; inset:0; background: rgba(0,0,0,.9); display:none; justify-content:center; align-items:center; z-index:3000; }
+.modal img { max-width:90%; max-height:90%; border-radius:12px; transition:transform var(--transition); }
+.modal img:hover { transform:scale(1.05); }
 
 /* COOKIE BANNER */
-.cookie-banner{
-  position:fixed;
-  bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  background:#fff;
-  color:#111;
-  padding:12px 20px;
-  border-radius:15px 15px 0 0;
-  box-shadow:0 -3px 15px rgba(0,0,0,.2);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  animation:slideUp 0.5s forwards;
-  font-size:14px;
-  z-index:4000;
+.cookie-banner {
+  position:fixed; bottom:0; left:50%; transform:translateX(-50%);
+  background:#fff; color:var(--text); padding:14px 24px;
+  border-radius:15px 15px 0 0; box-shadow:0 -3px 15px rgba(0,0,0,.2);
+  display:flex; justify-content:space-between; align-items:center; gap:12px;
+  animation:slideUp 0.5s forwards; font-size:14px; z-index:4000;
 }
-.cookie-banner button{
-  background:var(--accent);
-  color:#fff;
-  padding:6px 12px;
-  border-radius:999px;
-  border:none;
-  cursor:pointer;
+.cookie-banner button {
+  background: var(--accent); color:#fff; padding:6px 14px; border-radius:999px; border:none; cursor:pointer;
+  transition:all var(--transition);
 }
-@keyframes slideUp{from{transform:translate(-50%,100%);}to{transform:translate(-50%,0);}}
+.cookie-banner button:hover { background:var(--accent-hover); transform:scale(1.05); }
+
+/* ANIMATIONS */
+@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+@keyframes fadeInDown { from {opacity:0; transform:translateY(-30px);} to {opacity:1; transform:translateY(0);} }
+@keyframes fadeInUp { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
+@keyframes slideUp { from {transform:translate(-50%,100%);} to {transform:translate(-50%,0);} }
 
 /* RESPONSIVE */
 @media(max-width:500px){
   .cart-panel{width:95%; height:85%;}
-  main{margin-top:60px;}
-  .product img{width:120px;height:120px;}
+  #welcome h1{font-size:32px;}
+  #welcome p{font-size:16px;}
+  .product img{width:140px;height:140px;}
 }
 </style>
 </head>
@@ -196,39 +144,56 @@ button:hover{background:var(--accent-hover);}
 
 <header>
   <h1>Innocent Clothing</h1>
-  <button class="cart-btn" onclick="openCart()">
-    Cart (<span id="cartCount">0</span>)
-  </button>
+  <nav>
+    <a href="#welcome">Welcome</a>
+    <a href="#shop">Shop Now</a>
+    <a href="#contacts">Contact</a>
+  </nav>
+  <button class="cart-btn" onclick="openCart()">Cart (<span id="cartCount">0</span>)</button>
 </header>
 
-<main>
-<section class="products">
-
-<!-- Shirt -->
-<div class="product" data-name="Innocent Shirt" data-price="24">
-  <img src="INNOCENT shirts.png" alt="Shirt" onclick="openPreview(this)">
-  <div class="price">$24.00</div>
-  <div class="taxed">Price includes taxes</div>
-  <div class="options">
-    <select>
-      <option>Kids XS</option>
-      <option>Kids S</option>
-      <option>Kids M</option>
-      <option>Kids L</option>
-      <option>Adults S</option>
-      <option>Adults M</option>
-      <option>Adults L</option>
-      <option>Adults XL</option>
-    </select>
-    <input type="number" value="1" min="1">
-    <button onclick="addToCart(this)">Add to Cart</button>
+<section id="welcome">
+  <div class="overlay">
+    <h1>Welcome to Innocent Clothing</h1>
+    <p>Comfortable Clothing for Kids and Adults!</p>
+    <a href="#shop">Shop Now</a>
   </div>
-</div>
-
 </section>
-</main>
 
-<!-- FULLSCREEN CART -->
+<section id="shop" class="products">
+  <div class="product" data-name="Innocent Shirt" data-price="24">
+    <img src="INNOCENT shirts.png" alt="Shirt" onclick="openPreview(this)">
+    <div class="price">$24.99</div>
+    <div class="taxed">Price includes taxes</div>
+    <div class="options">
+      <select>
+        <option>Kids XS</option><option>Kids S</option><option>Kids M</option><option>Kids L</option>
+        <option>Adults S</option><option>Adults M</option><option>Adults L</option><option>Adults XL</option>
+      </select>
+      <input type="number" value="1" min="1">
+      <button onclick="addToCart(this)">Add to Cart</button>
+    </div>
+  </div>
+  <div class="product" data-name="Innocent Shirt" data-price="24">
+    <img src="INNOCENT shirts (1).png" alt="Shirt" onclick="openPreview(this)">
+    <div class="price">$24.99</div>
+    <div class="taxed">Price includes taxes</div>
+    <div class="options">
+      <select>
+        <option>Kids XS</option><option>Kids S</option><option>Kids M</option><option>Kids L</option>
+        <option>Adults S</option><option>Adults M</option><option>Adults L</option><option>Adults XL</option>
+      </select>
+      <input type="number" value="1" min="1">
+      <button onclick="addToCart(this)">Add to Cart</button>
+    </div>
+  </div>
+</section>
+
+<section id="contacts">
+  Contact us: davenanother@gmail.com
+</section>
+
+<!-- CART -->
 <div class="cart" id="cart" onclick="closeCart(event)">
   <div class="cart-panel">
     <h3>Your Cart</h3>
@@ -241,7 +206,7 @@ button:hover{background:var(--accent-hover);}
   </div>
 </div>
 
-<!-- IMAGE MODAL -->
+<!-- MODAL -->
 <div class="modal" id="preview" onclick="closePreview(event)">
   <img id="previewImg">
 </div>
@@ -253,87 +218,27 @@ button:hover{background:var(--accent-hover);}
 </div>
 
 <script>
-const cart=[];
-const cartEl=document.getElementById("cart");
-const cartItems=document.getElementById("cartItems");
-const cartCount=document.getElementById("cartCount");
-const cartTotal=document.getElementById("cartTotal");
-const firstName=document.getElementById("firstName");
-const lastName=document.getElementById("lastName");
-const preview=document.getElementById("preview");
-const previewImg=document.getElementById("previewImg");
+const cart=[]; const cartEl=document.getElementById("cart"); const cartItems=document.getElementById("cartItems");
+const cartCount=document.getElementById("cartCount"); const cartTotal=document.getElementById("cartTotal");
+const firstName=document.getElementById("firstName"); const lastName=document.getElementById("lastName");
+const preview=document.getElementById("preview"); const previewImg=document.getElementById("previewImg");
 const cookieBanner=document.getElementById("cookieBanner");
 
 // Cookies
-function setCookie(name,value,days){
-  const d=new Date();
-  d.setTime(d.getTime()+(days*24*60*60*1000));
-  document.cookie=`${name}=${value};expires=${d.toUTCString()};path=/`;
-}
-function getCookie(name){
-  const v=document.cookie.match('(^|;) ?'+name+'=([^;]*)(;|$)');
-  return v?v[2]:null;
-}
-function acceptCookies(){
-  setCookie('acceptedCookies','true',365);
-  cookieBanner.style.display='none';
-}
-window.onload=function(){
-  if(getCookie('acceptedCookies')) cookieBanner.style.display='none';
-};
+function setCookie(name,value,days){const d=new Date();d.setTime(d.getTime()+(days*24*60*60*1000));document.cookie=`${name}=${value};expires=${d.toUTCString()};path=/`;}
+function getCookie(name){const v=document.cookie.match('(^|;) ?'+name+'=([^;]*)(;|$)');return v?v[2]:null;}
+function acceptCookies(){setCookie('acceptedCookies','true',365);cookieBanner.style.display='none';}
+window.onload=function(){if(getCookie('acceptedCookies')) cookieBanner.style.display='none';}
 
-function openPreview(img){
-  previewImg.src=img.src;
-  preview.style.display="flex";
-}
-function closePreview(e){
-  if(e.target===preview) preview.style.display="none";
-}
+// Modal
+function openPreview(img){previewImg.src=img.src; preview.style.display="flex";}
+function closePreview(e){if(e.target===preview) preview.style.display="none";}
 
-function addToCart(btn){
-  const product=btn.closest(".product");
-  const name=product.dataset.name;
-  const price=Number(product.dataset.price);
-  const size=product.querySelector("select").value;
-  const qty=Math.max(1,Number(product.querySelector("input").value));
-  cart.push({name,size,qty,price});
-  renderCart();
-}
-
-function renderCart(){
-  cartItems.innerHTML="";
-  let total=0;
-  let count=0;
-  cart.forEach((i)=>{
-    total+=i.price*i.qty;
-    count+=i.qty;
-    const li=document.createElement("li");
-    li.textContent=`${i.name} — ${i.size} ×${i.qty}`;
-    cartItems.appendChild(li);
-  });
-  cartCount.textContent=count;
-  cartTotal.textContent=`Total: $${total.toFixed(2)}`;
-}
-
-function openCart(){cartEl.classList.add("show");}
-function closeCart(e){
-  if(e && e.target !== cartEl) return;
-  cartEl.classList.remove("show");
-}
-
-function checkout(){
-  if(!cart.length) return alert("Your cart is empty.");
-  if(!firstName.value.trim()){firstName.focus(); return;}
-  
-  let body=`Customer: ${firstName.value} ${lastName.value || ''}\n\n`;
-  let total=0;
-  cart.forEach((i,idx)=>{
-    total+=i.price*i.qty;
-    body+=`${idx+1}. ${i.name} - ${i.size} ×${i.qty}\n`;
-  });
-  body+=`\nTotal: $${total.toFixed(2)}`;
-  window.location.href=`mailto:davenanother@gmail.com?subject=Innocent Clothing Order&body=${encodeURIComponent(body)}`;
-}
+// Cart
+function addToCart(btn){const product=btn.closest(".product"); const name=product.dataset.name; const price=Number(product.dataset.price); const size=product.querySelector("select").value; const qty=Math.max(1,Number(product.querySelector("input").value)); cart.push({name,size,qty,price}); renderCart();}
+function renderCart(){cartItems.innerHTML="";let total=0,count=0; cart.forEach((i,idx)=>{total+=i.price*i.qty; count+=i.qty; const li=document.createElement("li"); li.textContent=`${i.name} — ${i.size} ×${i.qty}`; cartItems.appendChild(li);}); cartCount.textContent=count; cartTotal.textContent=`Total: $${total.toFixed(2)}`;}
+function openCart(){cartEl.classList.add("show");} function closeCart(e){if(e && e.target!==cartEl) return; cartEl.classList.remove("show");}
+function checkout(){if(!cart.length) return alert("Your cart is empty."); if(!firstName.value.trim()){firstName.focus(); return;} let body=`Customer: ${firstName.value} ${lastName.value || ''}\n\n`; let total=0; cart.forEach((i,idx)=>{total+=i.price*i.qty; body+=`${idx+1}. ${i.name} - ${i.size} ×${i.qty}\n`;}); body+=`\nTotal: $${total.toFixed(2)}`; window.location.href=`mailto:davenanother@gmail.com?subject=Innocent Clothing Order&body=${encodeURIComponent(body)}`;}
 </script>
 
 </body>
