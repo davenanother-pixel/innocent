@@ -265,7 +265,39 @@ function acceptCookies(){
   document.getElementById("cookie").style.display="none";
 }
 if(document.cookie.includes("cookiesAccepted=true")) document.getElementById("cookie").style.display="none";
-</script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/cart.js"></script>
+  <script src="/js/checkout.js"></script>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-analytics.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } 
+      from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAsrYoNYvErl3NeX9MA0MwuD1RjRpdJBpk",
+      authDomain: "innocent-clothing.firebaseapp.com",
+      projectId: "innocent-clothing",
+      storageBucket: "innocent-clothing.firebasestorage.app",
+      messagingSenderId: "203800531474",
+      appId: "1:203800531474:web:6befa86493d5ef0604becb",
+      measurementId: "G-LLZD7LZ29X"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getFirestore(app);
+
+    window.db = db;
+    window.addDoc = addDoc;
+    window.collection = collection;
+    window.serverTimestamp = serverTimestamp;
+  </script>
+
+</body>
+</html>
+
 
 </body>
 </html>
