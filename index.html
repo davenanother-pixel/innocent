@@ -2,121 +2,270 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>HACKED</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Innocent Clothing</title>
+<link rel="icon" href="/favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Courier New", monospace;
-    }
+:root{
+  --bg:#f6f6f6; --card:#fff; --accent:#000; --accent-hover:#333;
+  --text:#111; --muted:#666; --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.12);
+  --transition:.35s cubic-bezier(.4,0,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);scroll-behavior:smooth}
 
-    body {
-        background: black;
-        color: #00ff00;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        animation: flicker 2s infinite;
-    }
+header{position:sticky;top:0;z-index:1000;background:#fff;padding:16px 28px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+header h1{font-family:Cinzel,serif;font-size:28px}
+nav a{margin-left:20px;font-weight:600;text-decoration:none;color:var(--text);font-size:16px}
+.cart-btn{background:var(--accent);color:#fff;border:none;padding:12px 24px;border-radius:999px;font-weight:600;cursor:pointer;transition:all .3s}
+.cart-btn:hover{background:var(--accent-hover)}
 
-    .container {
-        border: 2px solid #00ff00;
-        padding: 40px;
-        max-width: 700px;
-        width: 90%;
-        box-shadow: 0 0 30px #00ff00;
-    }
+#welcome{height:85vh;background:url('banner.jpg') center/cover no-repeat;display:flex;justify-content:center;align-items:center}
+.hero-box{background:rgba(0,0,0,.65);padding:50px;border-radius:var(--radius);text-align:center;color:#fff;animation:fadeUp 1s ease}
+.hero-box h2{font-family:Cinzel,serif;font-size:48px;margin-bottom:20px}
+.hero-box p{font-size:20px;margin-bottom:28px}
+.hero-box a{background:#fff;color:#000;padding:14px 32px;border-radius:999px;font-weight:600;text-decoration:none;transition:all .3s}
+.hero-box a:hover{background:#000;color:#fff}
 
-    h1 {
-        font-size: 3rem;
-        margin-bottom: 20px;
-        text-shadow: 0 0 15px #00ff00;
-    }
+#shop{max-width:1300px;margin:auto;padding:80px 24px}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:36px}
+.product{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px;display:flex;flex-direction:column;align-items:center;transition:transform var(--transition);}
+.product:hover{transform:translateY(-8px)}
+.product img{width:100%;max-width:280px;height:auto;object-fit:contain;cursor:pointer;margin-bottom:18px}
+.product h3{margin-top:16px;font-size:20px;text-align:center}
+.price{margin-top:8px;font-weight:700;font-size:18px}
+.tax{font-size:12px;color:var(--muted);margin-bottom:14px}
+.product select,.product input{width:100%;padding:10px;margin-bottom:10px;font-size:16px}
+.product button{width:100%;padding:14px 0;border-radius:999px;border:none;background:var(--accent);color:#fff;font-weight:600;font-size:16px;cursor:pointer;transition:all .3s}
+.product button:hover{background:var(--accent-hover)}
 
-    p {
-        font-size: 1.2rem;
-        margin: 10px 0;
-    }
+.cart{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;justify-content:center;align-items:center;z-index:2000}
+.cart.show{display:flex}
+.cart-panel{background:#fff;width:90%;max-width:520px;border-radius:var(--radius);padding:24px;max-height:90vh;overflow-y:auto;position:relative}
+.cart-panel h3{text-align:center;margin-bottom:14px}
+.cart-panel input{width:100%;padding:10px;margin-bottom:10px;font-size:16px}
+.cart-panel ul{list-style:none;margin-top:12px}
+.cart-panel li{font-size:16px;padding:6px 0;border-bottom:1px solid #eee}
+#paypal-buttons-container{margin-top:20px}
 
-    .names {
-        margin-top: 25px;
-        font-size: 1.4rem;
-        color: red;
-        text-shadow: 0 0 10px red;
-    }
+.cookie{position:fixed;bottom:0;left:50%;transform:translateX(-50%);background:#fff;padding:16px 26px;border-radius:16px 16px 0 0;box-shadow:0 -4px 20px rgba(0,0,0,.2);display:flex;gap:12px;align-items:center;z-index:3000}
+.Accept{background-color:var(--accent);border:none;color:#fff;border-radius:999px;padding:8px 20px;font-weight:600;cursor:pointer;transition:all .3s}
+.Accept:hover{background-color:var(--accent-hover)}
 
-    @keyframes flicker {
-        0% { opacity: 1; }
-        5% { opacity: 0.8; }
-        10% { opacity: 1; }
-        15% { opacity: 0.9; }
-        20% { opacity: 1; }
-        100% { opacity: 1; }
-    }
+footer{padding:50px 20px;text-align:center;background:#fff;margin-top:60px;font-size:14px;color:#666}
+footer a{margin:0 10px;color:#666;text-decoration:none;transition:all .3s}
+footer a:hover{color:#000}
 
-    .glitch {
-        position: relative;
-        display: inline-block;
-    }
-
-    .glitch::before,
-    .glitch::after {
-        content: attr(data-text);
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        overflow: hidden;
-        color: #00ff00;
-        background: black;
-    }
-
-    .glitch::before {
-        left: 2px;
-        text-shadow: -2px 0 red;
-        clip: rect(24px, 550px, 90px, 0);
-        animation: glitch 2s infinite linear alternate-reverse;
-    }
-
-    .glitch::after {
-        left: -2px;
-        text-shadow: -2px 0 blue;
-        clip: rect(85px, 550px, 140px, 0);
-        animation: glitch 3s infinite linear alternate-reverse;
-    }
-
-    @keyframes glitch {
-        0% { clip: rect(10px, 9999px, 50px, 0); }
-        20% { clip: rect(30px, 9999px, 80px, 0); }
-        40% { clip: rect(5px, 9999px, 40px, 0); }
-        60% { clip: rect(45px, 9999px, 90px, 0); }
-        80% { clip: rect(20px, 9999px, 60px, 0); }
-        100% { clip: rect(35px, 9999px, 100px, 0); }
-    }
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
 </style>
 </head>
-
 <body>
-    <div class="container">
-        <h1 class="glitch" data-text="YOU HAVE BEEN HACKED">
-            YOU HAVE BEEN HACKED
-        </h1>
 
-        <p>System compromised.</p>
-        <p>Security level: <strong>FAILED</strong></p>
-        <p>Data integrity: <strong>BREACHED</strong></p>
+<header>
+<h1>Innocent Clothing</h1>
+<nav>
+<a href="#welcome">Welcome</a>
+<a href="#shop">Shop</a>
+<a href="#contact">Contact</a>
+<a href="/faq/">FAQ</a>
+</nav>
+<button class="cart-btn" onclick="openCart()">Cart (<span id="cartCount">0</span>)</button>
+</header>
 
-        <div class="names">
-            faithfull ahhaahahhah<br>
-            jared and jace<br>
-            innocent sucks
-        </div>
-        
-    </div>
+<section id="welcome">
+<div class="hero-box">
+<h2>Innocent Clothing</h2>
+<p>Streetwear for kids & adults</p>
+<a href="#shop">Shop Now</a>
+</div>
+</section>
+
+<section id="shop">
+<div class="products">
+
+<!-- Product Example -->
+<div class="product" data-name="Statue of Liberty T-Shirt" data-price="24">
+<img src="INNOCENT shirts (2).png" alt="Statue of Liberty T-Shirt">
+<h3>Statue of Liberty T-Shirt</h3>
+<div class="price">$24.99</div>
+<div class="tax">Tax included</div>
+<select>
+<option>Kids XS</option><option>Kids S</option><option>Kids M</option><option>Kids XL</option>
+<option>Adults S</option><option>Adults M</option><option>Adults L</option><option>Adults XL</option>
+</select>
+<input type="number" value="1" min="1">
+<button onclick="addToCart(this)">Add to Cart</button>
+</div>
+
+  <div class="product" data-name="Innocent T-Shirt" data-price="24">
+<img src="INNOCENT shirts (1).png" alt="Statue of Liberty T-Shirt">
+<h3>Innocent T-Shirt</h3>
+<div class="price">$24.99</div>
+<div class="tax">Tax included</div>
+<select>
+<option>Kids XS</option><option>Kids S</option><option>Kids M</option><option>Kids XL</option>
+<option>Adults S</option><option>Adults M</option><option>Adults L</option><option>Adults XL</option>
+</select>
+<input type="number" value="1" min="1">
+<button onclick="addToCart(this)">Add to Cart</button>
+</div>
+
+    <div class="product" data-name="Spray Painter T-Shirt" data-price="24">
+<img src="INNOCENT shirts (3).png" alt="Statue of Liberty T-Shirt">
+<h3>Spray Painter T-Shirt</h3>
+<div class="price">$24.99</div>
+<div class="tax">Tax included</div>
+<select>
+<option>Kids XS</option><option>Kids S</option><option>Kids M</option><option>Kids XL</option>
+<option>Adults S</option><option>Adults M</option><option>Adults L</option><option>Adults XL</option>
+</select>
+<input type="number" value="1" min="1">
+<button onclick="addToCart(this)">Add to Cart</button>
+</div>
+
+      <div class="product" data-name="Angel Wings T-Shirt" data-price="24">
+<img src="INNOCENT shirts (4).png" alt="Statue of Liberty T-Shirt">
+<h3>Angel Wings T-Shirt</h3>
+<div class="price">$24.99</div>
+<div class="tax">Tax included</div>
+<select>
+<option>Kids XS</option><option>Kids S</option><option>Kids M</option><option>Kids XL</option>
+<option>Adults S</option><option>Adults M</option><option>Adults L</option><option>Adults xL</option>
+</select>
+<input type="number" value="1" min="1">
+<button onclick="addToCart(this)">Add to Cart</button>
+</div>
+
+        <div class="product" data-name="Innocent Classic T-Shirt" data-price="24">
+<img src="INNOCENT shirts (5).png" alt="Statue of Liberty T-Shirt">
+<h3>Innocent Classic T-Shirt</h3>
+<div class="price">$24.99</div>
+<div class="tax">Tax included</div>
+<select>
+<option>Kids XS</option><option>Kids S</option><option>Kids M</option><option>Kids XL</option>
+<option>Adults S</option><option>Adults M</option><option>Adults L</option><option>Adults XL</option>
+</select>
+<input type="number" value="1" min="1">
+<button onclick="addToCart(this)">Add to Cart</button>
+</div>
+
+        <div class="product" data-name="Jesus Christ T-Shirt" data-price="24">
+<img src="INNOCENT shirts (6).png" alt="Statue of Liberty T-Shirt">
+<h3>Jesus Christ T-Shirt</h3>
+<div class="price">$24.99</div>
+<div class="tax">Tax included</div>
+<select>
+<option>Kids XS</option><option>Kids S</option><option>Kids M</option><option>Kids XL</option>
+<option>Adults S</option><option>Adults M</option><option>Adults L</option><option>Adults XL</option>
+</select>
+<input type="number" value="1" min="1">
+<button onclick="addToCart(this)">Add to Cart</button>
+</div>
+
+<!-- Copy and edit the div above for more products -->
+
+</div>
+</section>
+
+<section id="contact" style="padding:60px;text-align:center;">
+<p>Contact: <a href="mailto:davenanother@gmail.com, g.leiana@icloud.com, herrod.coloma@icloud.com">davenanother@gmail.com • g.leiana808@icloud.com • herrod.coloma@icloud.com</a></p>
+</section>
+
+<div class="cart" id="cart" onclick="closeCart(event)">
+<div class="cart-panel">
+<h3>Your Cart</h3>
+<input id="firstName" placeholder="First Name (required)">
+<input id="lastName" placeholder="Last Name (optional)">
+<ul id="cartItems"></ul>
+<div id="cartTotal"></div>
+<div id="paypal-buttons-container"></div>
+<button onclick="checkout()">Checkout with PayPal</button>
+</div>
+</div>
+
+<div class="cookie" id="cookie">
+<span>We use cookies for a better experience.</span>
+<button class="Accept" onclick="acceptCookies()">Accept</button>
+</div>
+
+<footer>
+  <p>© 2026 Innocent Clothing</p> 
+<a href="/privacy/">Privacy</a> | <a href="/terms/">Terms</a> | <a href="/refund/">Refunds</a> | <a href="/shipping/">Shipping</a> | <a href="/faq/">FAQ</a>
+</footer>
+
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=USD"></script>
+
+<script>
+// CART
+const cart=[];
+const cartEl=document.getElementById("cart");
+const cartItems=document.getElementById("cartItems");
+const cartCount=document.getElementById("cartCount");
+const cartTotal=document.getElementById("cartTotal");
+
+function addToCart(btn){
+  const p=btn.closest(".product");
+  const name=p.dataset.name;
+  const price=parseFloat(p.dataset.price);
+  const size=p.querySelector("select").value;
+  const qty=parseInt(p.querySelector("input").value);
+
+  const existing=cart.find(i=>i.name===name && i.size===size);
+  if(existing){existing.qty+=qty;}
+  else{cart.push({name,price,size,qty});}
+  renderCart();
+}
+
+function renderCart(){
+  cartItems.innerHTML="";
+  let total=0,count=0;
+  cart.forEach(i=>{
+    total+=i.price*i.qty;
+    count+=i.qty;
+    const li=document.createElement("li");
+    li.textContent=`${i.name} (${i.size}) ×${i.qty} - $${(i.price*i.qty).toFixed(2)}`;
+    cartItems.appendChild(li);
+  });
+  cartTotal.textContent="Total: $"+total.toFixed(2);
+  cartCount.textContent=count;
+}
+
+function openCart(){cartEl.classList.add("show");}
+function closeCart(e){if(e.target===cartEl)cartEl.classList.remove("show");}
+
+function renderPayPalButtons(){
+  const total=cart.reduce((acc,i)=>acc+i.price*i.qty,0);
+  const container=document.getElementById("paypal-buttons-container");
+  container.innerHTML="";
+  paypal.Buttons({
+    createOrder:function(data,actions){
+      return actions.order.create({purchase_units:[{amount:{value:total.toFixed(2)},description:"Innocent Clothing Order"}]});
+    },
+    onApprove:function(data,actions){
+      return actions.order.capture().then(details=>{
+        window.location.href="/success/";
+      });
+    },
+    onError:function(err){alert("Payment failed");console.error(err);}
+  }).render("#paypal-buttons-container");
+}
+
+function checkout(){
+  const firstName=document.getElementById("firstName").value.trim();
+  if(!firstName) return alert("First name required");
+  if(cart.length===0) return alert("Cart is empty");
+  renderPayPalButtons();
+}
+
+// COOKIE
+function acceptCookies(){
+  document.cookie="cookiesAccepted=true;max-age=31536000;path=/";
+  document.getElementById("cookie").style.display="none";
+}
+if(document.cookie.includes("cookiesAccepted=true")) document.getElementById("cookie").style.display="none";
+</script>
+
 </body>
 </html>
