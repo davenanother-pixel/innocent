@@ -22,8 +22,8 @@ nav a{margin-left:20px;font-weight:600;text-decoration:none;color:var(--text);fo
 .cart-btn{background:var(--accent);color:#fff;border:none;padding:12px 24px;border-radius:999px;font-weight:600;cursor:pointer;transition:all .3s}
 .cart-btn:hover{background:var(--accent-hover)}
 
-#welcome{height:85vh;background:url('banner.jpg') center/cover no-repeat;display:flex;justify-content:center;align-items:center}
-.hero-box{background:rgba(0,0,0,.65);padding:50px;border-radius:var(--radius);text-align:center;color:#fff;animation:fadeUp 1s ease}
+#welcome{height:85vh;background:#000 url('banner.jpg') center/cover no-repeat;display:flex;justify-content:center;align-items:center}
+.hero-box{background:rgba(0,0,0,.7);padding:50px;border-radius:var(--radius);text-align:center;color:#fff;animation:fadeUp 1s ease}
 .hero-box h2{font-family:Cinzel,serif;font-size:48px;margin-bottom:20px}
 .hero-box p{font-size:20px;margin-bottom:28px}
 .hero-box a{background:#fff;color:#000;padding:14px 32px;border-radius:999px;font-weight:600;text-decoration:none;transition:all .3s}
@@ -40,6 +40,12 @@ nav a{margin-left:20px;font-weight:600;text-decoration:none;color:var(--text);fo
 .product select,.product input{width:100%;padding:10px;margin-bottom:10px;font-size:16px}
 .product button{width:100%;padding:14px 0;border-radius:999px;border:none;background:var(--accent);color:#fff;font-weight:600;font-size:16px;cursor:pointer;transition:all .3s}
 .product button:hover{background:var(--accent-hover)}
+
+#support{padding:60px;max-width:800px;margin:auto;text-align:center;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:60px;}
+#support h2{font-family:Cinzel,serif;font-size:32px;margin-bottom:20px;color:var(--accent);}
+#support p{font-size:16px;line-height:1.6;margin-bottom:20px;}
+#support a{color:var(--accent);text-decoration:none;}
+#support a:hover{color:var(--accent-hover);}
 
 .cart{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;justify-content:center;align-items:center;z-index:2000}
 .cart.show{display:flex}
@@ -68,6 +74,7 @@ footer a:hover{color:#000}
 <nav>
 <a href="#welcome">Welcome</a>
 <a href="#shop">Shop</a>
+<a href="#support">Support</a>
 <a href="#contact">Contact</a>
 <a href="/faq/">FAQ</a>
 </nav>
@@ -85,22 +92,9 @@ footer a:hover{color:#000}
 <section id="shop">
 <div class="products">
 
-<!-- Product Example -->
-<div class="product" data-name="Statue of Liberty T-Shirt" data-price="24">
-<img src="INNOCENT shirts (2).png" alt="Statue of Liberty T-Shirt">
-<h3>Statue of Liberty T-Shirt</h3>
-<div class="price">$24.99</div>
-<div class="tax">Tax included</div>
-<select>
-<option>Kids XS</option><option>Kids S</option><option>Kids M</option><option>Kids XL</option>
-<option>Adults S</option><option>Adults M</option><option>Adults L</option><option>Adults XL</option>
-</select>
-<input type="number" value="1" min="1">
-<button onclick="addToCart(this)">Add to Cart</button>
-</div>
-
-  <div class="product" data-name="Innocent T-Shirt" data-price="24">
-<img src="INNOCENT shirts (1).png" alt="Statue of Liberty T-Shirt">
+<!-- Example Product -->
+<div class="product" data-name="Innocent T-Shirt" data-price="24.99">
+<img src="INNOCENT shirts (1).png" alt="Innocent T-Shirt">
 <h3>Innocent T-Shirt</h3>
 <div class="price">$24.99</div>
 <div class="tax">Tax included</div>
@@ -112,67 +106,29 @@ footer a:hover{color:#000}
 <button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
-    <div class="product" data-name="Spray Painter T-Shirt" data-price="24">
-<img src="INNOCENT shirts (3).png" alt="Statue of Liberty T-Shirt">
-<h3>Spray Painter T-Shirt</h3>
-<div class="price">$24.99</div>
-<div class="tax">Tax included</div>
-<select>
-<option>Kids XS</option><option>Kids S</option><option>Kids M</option><option>Kids XL</option>
-<option>Adults S</option><option>Adults M</option><option>Adults L</option><option>Adults XL</option>
-</select>
-<input type="number" value="1" min="1">
-<button onclick="addToCart(this)">Add to Cart</button>
-</div>
-
-      <div class="product" data-name="Angel Wings T-Shirt" data-price="24">
-<img src="INNOCENT shirts (4).png" alt="Statue of Liberty T-Shirt">
-<h3>Angel Wings T-Shirt</h3>
-<div class="price">$24.99</div>
-<div class="tax">Tax included</div>
-<select>
-<option>Kids XS</option><option>Kids S</option><option>Kids M</option><option>Kids XL</option>
-<option>Adults S</option><option>Adults M</option><option>Adults L</option><option>Adults xL</option>
-</select>
-<input type="number" value="1" min="1">
-<button onclick="addToCart(this)">Add to Cart</button>
-</div>
-
-        <div class="product" data-name="Innocent Classic T-Shirt" data-price="24">
-<img src="INNOCENT shirts (5).png" alt="Statue of Liberty T-Shirt">
-<h3>Innocent Classic T-Shirt</h3>
-<div class="price">$24.99</div>
-<div class="tax">Tax included</div>
-<select>
-<option>Kids XS</option><option>Kids S</option><option>Kids M</option><option>Kids XL</option>
-<option>Adults S</option><option>Adults M</option><option>Adults L</option><option>Adults XL</option>
-</select>
-<input type="number" value="1" min="1">
-<button onclick="addToCart(this)">Add to Cart</button>
-</div>
-
-        <div class="product" data-name="Jesus Christ T-Shirt" data-price="24">
-<img src="INNOCENT shirts (6).png" alt="Statue of Liberty T-Shirt">
-<h3>Jesus Christ T-Shirt</h3>
-<div class="price">$24.99</div>
-<div class="tax">Tax included</div>
-<select>
-<option>Kids XS</option><option>Kids S</option><option>Kids M</option><option>Kids XL</option>
-<option>Adults S</option><option>Adults M</option><option>Adults L</option><option>Adults XL</option>
-</select>
-<input type="number" value="1" min="1">
-<button onclick="addToCart(this)">Add to Cart</button>
-</div>
-
-<!-- Copy and edit the div above for more products -->
+<!-- Repeat product divs as needed -->
 
 </div>
+</section>
+
+<section id="support">
+<h2>Support & Security</h2>
+<p>If you find a security issue, do <strong>not</strong> open a public GitHub issue. Contact us directly:</p>
+<p>Email: <a href="mailto:support@innocents.shop">support@innocents.shop</a></p>
+<form action="mailto:support@innocents.shop" method="post" enctype="text/plain" style="display:flex;flex-direction:column;gap:12px;">
+<input type="text" name="name" placeholder="Your Name *" required>
+<input type="email" name="email" placeholder="Your Email *" required>
+<input type="text" name="subject" placeholder="Subject *" required>
+<textarea name="message" rows="6" placeholder="Describe the issue..." required></textarea>
+<input type="submit" value="Send Report" style="background:var(--accent);color:#fff;padding:12px 20px;border:none;border-radius:999px;font-weight:600;cursor:pointer;">
+</form>
 </section>
 
 <section id="contact" style="padding:60px;text-align:center;">
-<p>Contact: <a href="mailto:davenanother@gmail.com, g.leiana@icloud.com, herrod.coloma@icloud.com">davenanother@gmail.com • g.leiana808@icloud.com • herrod.coloma@icloud.com</a></p>
+<p>Contact: <a href="mailto:davenanother@gmail.com,g.leiana@icloud.com,herrod.coloma@icloud.com">davenanother@gmail.com • g.leiana@icloud.com • herrod.coloma@icloud.com</a></p>
 </section>
 
+<!-- Cart Panel -->
 <div class="cart" id="cart" onclick="closeCart(event)">
 <div class="cart-panel">
 <h3>Your Cart</h3>
@@ -185,42 +141,41 @@ footer a:hover{color:#000}
 </div>
 </div>
 
+<!-- Cookie Notice -->
 <div class="cookie" id="cookie">
 <span>We use cookies for a better experience.</span>
 <button class="Accept" onclick="acceptCookies()">Accept</button>
 </div>
 
 <footer>
-  <p>© 2026 Innocent Clothing</p> 
+<p>© 2026 Innocent Clothing</p>
 <a href="/privacy/">Privacy</a> | <a href="/terms/">Terms</a> | <a href="/refund/">Refunds</a> | <a href="/shipping/">Shipping</a> | <a href="/faq/">FAQ</a>
 </footer>
 
 <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=USD"></script>
-
 <script>
 // CART
-const cart=[];
-const cartEl=document.getElementById("cart");
-const cartItems=document.getElementById("cartItems");
-const cartCount=document.getElementById("cartCount");
-const cartTotal=document.getElementById("cartTotal");
+const cart = [];
+const cartEl = document.getElementById("cart");
+const cartItems = document.getElementById("cartItems");
+const cartCount = document.getElementById("cartCount");
+const cartTotal = document.getElementById("cartTotal");
 
 function addToCart(btn){
-  const p=btn.closest(".product");
-  const name=p.dataset.name;
-  const price=parseFloat(p.dataset.price);
-  const size=p.querySelector("select").value;
-  const qty=parseInt(p.querySelector("input").value);
-
-  const existing=cart.find(i=>i.name===name && i.size===size);
-  if(existing){existing.qty+=qty;}
-  else{cart.push({name,price,size,qty});}
+  const p = btn.closest(".product");
+  const name = p.dataset.name;
+  const price = parseFloat(p.dataset.price);
+  const size = p.querySelector("select").value;
+  const qty = parseInt(p.querySelector("input").value);
+  const existing = cart.find(i=>i.name===name && i.size===size);
+  if(existing){ existing.qty += qty; }
+  else{ cart.push({name,price,size,qty}); }
   renderCart();
 }
 
 function renderCart(){
   cartItems.innerHTML="";
-  let total=0,count=0;
+  let total=0, count=0;
   cart.forEach(i=>{
     total+=i.price*i.qty;
     count+=i.qty;
@@ -253,7 +208,7 @@ function renderPayPalButtons(){
 }
 
 function checkout(){
-  const firstName=document.getElementById("firstName").value.trim();
+  const firstName = document.getElementById("firstName").value.trim();
   if(!firstName) return alert("First name required");
   if(cart.length===0) return alert("Cart is empty");
   renderPayPalButtons();
@@ -265,35 +220,6 @@ function acceptCookies(){
   document.getElementById("cookie").style.display="none";
 }
 if(document.cookie.includes("cookiesAccepted=true")) document.getElementById("cookie").style.display="none";
-  <script src="/js/ui.js"></script>
-  <script src="/js/cart.js"></script>
-  <script src="/js/checkout.js"></script>
-
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-analytics.js";
-    import { getFirestore, collection, addDoc, serverTimestamp } 
-      from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyAsrYoNYvErl3NeX9MA0MwuD1RjRpdJBpk",
-      authDomain: "innocent-clothing.firebaseapp.com",
-      projectId: "innocent-clothing",
-      storageBucket: "innocent-clothing.firebasestorage.app",
-      messagingSenderId: "203800531474",
-      appId: "1:203800531474:web:6befa86493d5ef0604becb",
-      measurementId: "G-LLZD7LZ29X"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const db = getFirestore(app);
-
-    window.db = db;
-    window.addDoc = addDoc;
-    window.collection = collection;
-    window.serverTimestamp = serverTimestamp;
-  </script>
-
+</script>
 </body>
 </html>
