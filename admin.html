@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Panel | Innocent Clothing</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{font-family:Arial,sans-serif;background:#f4f4f4;margin:0;padding:40px;}
+.container{max-width:900px;margin:auto;background:#fff;padding:40px;border-radius:12px;}
+table{width:100%;border-collapse:collapse;}
+th,td{padding:12px;border:1px solid #ccc;text-align:left;}
+th{background:#eee;}
+button{padding:6px 12px;background:#000;color:#fff;border:none;border-radius:999px;cursor:pointer;}
+button:hover{background:#333;}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Admin Panel — Orders</h1>
+<table>
+<thead>
+<tr>
+<th>Customer</th>
+<th>Items</th>
+<th>Total ($)</th>
+<th>Status</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody id="ordersTable"></tbody>
+</table>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+<script>
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+const ordersTable = document.getElementById("ordersTable");
+
+// Load orders
+db.collection("orders").orderBy("date","desc").onSnapshot(snapshot=>{
+  ordersTable.innerHTML="";
+  snapshot.forEach(doc=>{
+    const data = doc.data();
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${data.customer}</td>
+      <td>${data.items.map(i=>i.name+" ("+i.size+") x"+i.qty).join("<br>")}</td>
+      <td>${data.total.toFixed(2)}</td>
+      <td>${data.status}</td>
+      <td><button onclick="updateStatus('${doc.id}')">Mark Fulfilled</button></td>
+    `;
+    ordersTable.appendChild(row);
+  });
+});
+
+// Update order status
+function updateStatus(id){
+  db.collection("orders").doc(id).update({status:"Fulfilled"}).then(()=>alert("Order updated"));
+}
+</script>
+</body>
+</html>
