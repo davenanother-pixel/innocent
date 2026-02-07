@@ -22,45 +22,47 @@
 
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);scroll-behavior:smooth}
+
 header{position:sticky;top:0;z-index:1000;background:#fff;padding:16px 28px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,.06)}
-header h1{font-family:Cinzel,serif;font-size:26px}
-nav a{margin-left:18px;font-weight:600;text-decoration:none;color:var(--text)}
-.cart-btn{background:var(--accent);color:#fff;border:none;padding:10px 20px;border-radius:999px;font-weight:600;cursor:pointer;transition:all .3s}
+header h1{font-family:Cinzel,serif;font-size:28px}
+nav a{margin-left:20px;font-weight:600;text-decoration:none;color:var(--text);font-size:16px}
+.cart-btn{background:var(--accent);color:#fff;border:none;padding:12px 24px;border-radius:999px;font-weight:600;cursor:pointer;transition:all .3s}
 .cart-btn:hover{background:var(--accent-hover)}
 
-#welcome{height:85vh;background:url('banner.jpg') center/cover no-repeat;display:flex;justify-content:center;align-items:center}
-.hero-box{background:rgba(0,0,0,.65);padding:50px;border-radius:var(--radius);text-align:center;color:#fff;animation:fadeUp 1s ease}
-.hero-box h2{font-family:Cinzel,serif;font-size:52px;margin-bottom:16px}
-.hero-box p{font-size:20px;margin-bottom:28px}
-.hero-box a{background:#fff;color:#000;padding:14px 32px;border-radius:999px;font-weight:600;text-decoration:none;transition:all .3s}
+#welcome{height:90vh;background:url('banner.jpg') center/cover no-repeat;display:flex;justify-content:center;align-items:center}
+.hero-box{background:rgba(0,0,0,.65);padding:60px;border-radius:var(--radius);text-align:center;color:#fff;animation:fadeUp 1s ease}
+.hero-box h2{font-family:Cinzel,serif;font-size:56px;margin-bottom:20px}
+.hero-box p{font-size:22px;margin-bottom:28px}
+.hero-box a{background:#fff;color:#000;padding:16px 36px;border-radius:999px;font-weight:600;text-decoration:none;transition:all .3s}
 .hero-box a:hover{background:#000;color:#fff}
 
-#shop{max-width:1300px;margin:auto;padding:80px 24px}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:36px}
-.product{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px;display:flex;flex-direction:column;align-items:center;transition:transform var(--transition)}
-.product:hover{transform:translateY(-10px)}
-.product img{width:260px;height:260px;object-fit:contain;cursor:pointer}
-.product h3{margin-top:16px;font-size:18px;text-align:center}
-.price{margin-top:6px;font-weight:600}
-.tax{font-size:12px;color:var(--muted);margin-bottom:14px}
-.product select,.product input{width:100%;padding:10px;margin-bottom:10px}
-.product button{width:100%;padding:12px;border-radius:999px;border:none;background:var(--accent);color:#fff;font-weight:600;cursor:pointer;transition:all .3s}
+#shop{max-width:1400px;margin:auto;padding:100px 24px}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:40px}
+
+.product{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:36px;display:flex;flex-direction:column;align-items:center;transition:transform var(--transition)}
+.product:hover{transform:translateY(-12px)}
+.product img{width:100%;max-width:360px;height:auto;object-fit:contain;cursor:pointer;margin-bottom:20px}
+.product h3{margin-top:16px;font-size:22px;text-align:center}
+.price{margin-top:8px;font-weight:700;font-size:18px}
+.tax{font-size:14px;color:var(--muted);margin-bottom:16px}
+.product select,.product input{width:100%;padding:12px;margin-bottom:12px;font-size:16px}
+.product button{width:100%;padding:16px 0;border-radius:999px;border:none;background:var(--accent);color:#fff;font-weight:600;font-size:16px;cursor:pointer;transition:all .3s}
 .product button:hover{background:var(--accent-hover)}
 
 .cart{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;justify-content:center;align-items:center;z-index:2000}
 .cart.show{display:flex}
-.cart-panel{background:#fff;width:90%;max-width:520px;border-radius:var(--radius);padding:24px;max-height:90vh;overflow-y:auto;position:relative}
+.cart-panel{background:#fff;width:90%;max-width:560px;border-radius:var(--radius);padding:30px;max-height:90vh;overflow-y:auto;position:relative}
 .cart-panel h3{text-align:center;margin-bottom:14px}
-.cart-panel input{width:100%;padding:10px;margin-bottom:10px}
+.cart-panel input{width:100%;padding:12px;margin-bottom:12px;font-size:16px}
 .cart-panel ul{list-style:none;margin-top:12px}
-.cart-panel li{font-size:14px;padding:6px 0;border-bottom:1px solid #eee}
+.cart-panel li{font-size:16px;padding:8px 0;border-bottom:1px solid #eee}
 #paypal-buttons-container{margin-top:20px}
 
-.cookie{position:fixed;bottom:0;left:50%;transform:translateX(-50%);background:#fff;padding:16px 26px;border-radius:16px 16px 0 0;box-shadow:0 -4px 20px rgba(0,0,0,.2);display:flex;gap:12px;align-items:center;z-index:3000}
-.Accept{background-color:var(--accent);border:none;color:#fff;border-radius:999px;padding:8px 20px;font-weight:600;cursor:pointer;transition:all .3s}
+.cookie{position:fixed;bottom:0;left:50%;transform:translateX(-50%);background:#fff;padding:18px 28px;border-radius:16px 16px 0 0;box-shadow:0 -4px 20px rgba(0,0,0,.2);display:flex;gap:12px;align-items:center;z-index:3000}
+.Accept{background-color:var(--accent);border:none;color:#fff;border-radius:999px;padding:10px 22px;font-weight:600;cursor:pointer;transition:all .3s}
 .Accept:hover{background-color:var(--accent-hover)}
 
-footer{padding:40px 20px;text-align:center;background:#fff;margin-top:60px;font-size:14px;color:#666}
+footer{padding:50px 20px;text-align:center;background:#fff;margin-top:60px;font-size:14px;color:#666}
 footer a{margin:0 10px;color:#666;text-decoration:none;transition:all .3s}
 footer a:hover{color:#000}
 
@@ -90,7 +92,7 @@ footer a:hover{color:#000}
 
 <section id="shop">
 <div class="products">
-<!-- Example product 1 -->
+<!-- Product 1 -->
 <div class="product" data-name="Statue of Liberty T-Shirt" data-price="24">
 <img src="INNOCENT shirts (2).png" alt="Statue of Liberty T-Shirt">
 <h3>Statue of Liberty T-Shirt</h3>
@@ -104,7 +106,7 @@ footer a:hover{color:#000}
 <button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
-<!-- Example product 2 -->
+<!-- Product 2 -->
 <div class="product" data-name="Spray Painter T-Shirt" data-price="24">
 <img src="INNOCENT shirts (3).png" alt="Spray Painter T-Shirt">
 <h3>Spray Painter T-Shirt</h3>
@@ -118,11 +120,11 @@ footer a:hover{color:#000}
 <button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
-<!-- Add more products as needed -->
+<!-- Add more products similarly -->
 </div>
 </section>
 
-<section id="contact" style="padding:60px;text-align:center;">
+<section id="contact" style="padding:80px;text-align:center;">
 <p>Contact: <a href="mailto:davenanother@gmail.com">davenanother@gmail.com</a></p>
 </section>
 
@@ -172,19 +174,19 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 // CART LOGIC
-const cart = [];
-const cartEl = document.getElementById("cart");
-const cartItems = document.getElementById("cartItems");
-const cartCount = document.getElementById("cartCount");
-const cartTotal = document.getElementById("cartTotal");
+const cart=[];
+const cartEl=document.getElementById("cart");
+const cartItems=document.getElementById("cartItems");
+const cartCount=document.getElementById("cartCount");
+const cartTotal=document.getElementById("cartTotal");
 
 function addToCart(btn){
-  const p = btn.closest(".product");
+  const p=btn.closest(".product");
   cart.push({
-    name: p.dataset.name,
-    price: +p.dataset.price,
-    size: p.querySelector("select").value,
-    qty: +p.querySelector("input").value
+    name:p.dataset.name,
+    price:+p.dataset.price,
+    size:p.querySelector("select").value,
+    qty:+p.querySelector("input").value
   });
   renderCart();
 }
@@ -208,11 +210,11 @@ function closeCart(e){if(e.target===cartEl)cartEl.classList.remove("show");}
 
 // PAYPAL CHECKOUT
 function renderPayPalButtons(){
-  const total = cart.reduce((acc,i)=>acc+i.price*i.qty,0);
+  const total=cart.reduce((acc,i)=>acc+i.price*i.qty,0);
   const container=document.getElementById("paypal-buttons-container");
   container.innerHTML="";
   paypal.Buttons({
-    createOrder: function(data,actions){
+    createOrder:function(data,actions){
       return actions.order.create({purchase_units:[{amount:{value:total.toFixed(2)},description:"Innocent Clothing Order"}]});
     },
     onApprove:function(data,actions){
@@ -229,7 +231,7 @@ function renderPayPalButtons(){
         .catch(err=>alert("Error saving order: "+err));
       });
     },
-    onError:function(err){alert("Payment failed."); console.error(err);}
+    onError:function(err){alert("Payment failed.");console.error(err);}
   }).render("#paypal-buttons-container");
 }
 
@@ -247,6 +249,5 @@ function acceptCookies(){
 }
 if(document.cookie.includes("cookiesAccepted=true")) document.getElementById("cookie").style.display="none";
 </script>
-
 </body>
 </html>
